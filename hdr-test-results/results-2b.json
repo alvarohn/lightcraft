@@ -1,0 +1,597 @@
+{
+ "round": "round2b",
+ "lightcraft_version": "lightcraft-cli 0.7.1",
+ "build": "release a7iii-hdr-20261013-eece99b of alvarohn/lightcraft (round 2's build + storytold/lightcraft#1123)",
+ "method": {
+  "merges": "lightcraft-cli merge hdr on fresh copies in <set>/cli3 (defaults); the user's app merge of the kitchen is byte-identical",
+  "renders": "lightcraft-cli render --size 1500, 16-bit TIFF, default settings (or wb.temp / wb.tint set), each file staged with an empty XMP sidecar",
+  "delta_e": "CIEDE2000 on 4x4-pixel block averages, sRGB -> Lab (D65); mid-tone blocks of the reference (L* 20-85), no clipped blocks, 4 % border excluded; neutral = reference blocks with C*ab < 6",
+  "as_shot_xy": "xy of ColorMatrix1^-1 * AsShotNeutral (CalibrationIlluminant1 = 21, D65); CCT by McCamy, Duv from the Planckian locus (Krystek), + = above the locus (green)",
+  "old": "the round-2 HDR of the same set (no colour tags), rendered by this build"
+ },
+ "sets": {
+  "sony-01150-living": {
+   "files": {
+    "ref": "DSC01150.ARW",
+    "new": "cli3/DSC01150-HDR.dng",
+    "old": "cli2/DSC01150-HDR.dng"
+   },
+   "cli_merge_seconds": 19.2,
+   "reference": 1,
+   "develop_get_as_shot": {
+    "ref": {
+     "mode": "asShot",
+     "scale": "kelvin",
+     "temp": 4813.0,
+     "tint": 8.0
+    },
+    "new": {
+     "mode": "asShot",
+     "scale": "kelvin",
+     "temp": 6913.0,
+     "tint": 115.0
+    },
+    "old": {
+     "mode": "asShot",
+     "scale": "kelvin",
+     "temp": 6502.0,
+     "tint": 10.0
+    }
+   },
+   "dng_colour_tags": {
+    "new": {
+     "tags": {
+      "ColorMatrix1": [
+       1.815734,
+       -0.940235,
+       -0.027927,
+       -0.523211,
+       1.434027,
+       -0.049957,
+       0.231247,
+       0.039183,
+       0.489663
+      ],
+      "ForwardMatrix1": [
+       0.347097,
+       0.608837,
+       0.017882,
+       0.130472,
+       0.836343,
+       0.039065,
+       -0.137379,
+       -0.274465,
+       1.220967
+      ],
+      "AsShotNeutral": [
+       0.418985,
+       1.0,
+       0.622871
+      ],
+      "CalibrationIlluminant1": [
+       21
+      ],
+      "BaselineExposure": [
+       1.950778
+      ],
+      "ProfileHueSatMapDims": [
+       72,
+       5,
+       5
+      ],
+      "ProfileHueSatMapData1": "present (5400 values)",
+      "ProfileToneCurve": "present (516 values)"
+     },
+     "as_shot_xy": [
+      0.293851,
+      0.386573
+     ],
+     "as_shot_cct_duv": [
+      6947.198523,
+      0.038339
+     ]
+    },
+    "old": {
+     "tags": {
+      "BaselineExposure": [
+       1.95845
+      ]
+     },
+     "as_shot_xy": null,
+     "as_shot_cct_duv": null
+    }
+   },
+   "dng_opcodes": {
+    "DSC01150-HDR.dng": [
+     "WarpRectilinear"
+    ]
+   },
+   "default_render_vs_reference": {
+    "new": {
+     "blocks": 65041,
+     "de2000_median": 0.407,
+     "de2000_p90": 1.071,
+     "dL_mean": -0.027,
+     "da_mean": -0.023,
+     "db_mean": 0.03,
+     "neutral_blocks": 48100,
+     "neutral_ref_ab": [
+      0.397,
+      3.233
+     ],
+     "neutral_hdr_ab": [
+      0.305,
+      3.305
+     ]
+    },
+    "old": {
+     "blocks": 65355,
+     "de2000_median": 7.415,
+     "de2000_p90": 17.63,
+     "dL_mean": -8.772,
+     "da_mean": 1.167,
+     "db_mean": 6.573,
+     "neutral_blocks": 48147,
+     "neutral_ref_ab": [
+      0.396,
+      3.229
+     ],
+     "neutral_hdr_ab": [
+      1.451,
+      9.854
+     ]
+    }
+   },
+   "same_wb_render_vs_reference": {
+    "5000K_tint0": {
+     "blocks": 65507,
+     "de2000_median": 10.898,
+     "de2000_p90": 13.684,
+     "dL_mean": -2.014,
+     "da_mean": -10.514,
+     "db_mean": 2.14,
+     "neutral_blocks": 22589,
+     "neutral_ref_ab": [
+      -0.899,
+      3.56
+     ],
+     "neutral_hdr_ab": [
+      -10.676,
+      5.89
+     ]
+    },
+    "3200K_tint0": {
+     "blocks": 62511,
+     "de2000_median": 11.798,
+     "de2000_p90": 13.999,
+     "dL_mean": 1.39,
+     "da_mean": -9.953,
+     "db_mean": 9.296,
+     "neutral_blocks": 1924,
+     "neutral_ref_ab": [
+      -1.594,
+      -1.607
+     ],
+     "neutral_hdr_ab": [
+      -11.346,
+      4.794
+     ]
+    }
+   }
+  },
+  "sony-01159-comedor": {
+   "files": {
+    "ref": "DSC01159.ARW",
+    "new": "cli3/DSC01159-HDR.dng",
+    "old": "cli2/DSC01159-HDR.dng"
+   },
+   "cli_merge_seconds": 63.0,
+   "reference": 1,
+   "develop_get_as_shot": {
+    "ref": {
+     "mode": "asShot",
+     "scale": "kelvin",
+     "temp": 5268.0,
+     "tint": 8.0
+    },
+    "new": {
+     "mode": "asShot",
+     "scale": "kelvin",
+     "temp": 7307.0,
+     "tint": 117.0
+    },
+    "old": {
+     "mode": "asShot",
+     "scale": "kelvin",
+     "temp": 6502.0,
+     "tint": 10.0
+    }
+   },
+   "dng_colour_tags": {
+    "new": {
+     "tags": {
+      "ColorMatrix1": [
+       1.143057,
+       -0.439435,
+       -0.029041,
+       -0.279396,
+       1.250569,
+       -0.048681,
+       0.172669,
+       0.12421,
+       0.459433
+      ],
+      "ForwardMatrix1": [
+       0.466514,
+       0.488058,
+       0.011109,
+       0.129388,
+       0.835281,
+       0.038708,
+       -0.151159,
+       -0.332242,
+       1.303266
+      ],
+      "AsShotNeutral": [
+       0.399376,
+       1.0,
+       0.663212
+      ],
+      "CalibrationIlluminant1": [
+       21
+      ],
+      "BaselineExposure": [
+       1.440206
+      ],
+      "ProfileHueSatMapDims": [
+       72,
+       5,
+       5
+      ],
+      "ProfileHueSatMapData1": "present (5400 values)",
+      "ProfileToneCurve": "present (516 values)"
+     },
+     "as_shot_xy": [
+      0.286074,
+      0.378858
+     ],
+     "as_shot_cct_duv": [
+      7349.038124,
+      0.038854
+     ]
+    },
+    "old": {
+     "tags": {
+      "BaselineExposure": [
+       1.444904
+      ]
+     },
+     "as_shot_xy": null,
+     "as_shot_cct_duv": null
+    }
+   },
+   "dng_opcodes": {
+    "DSC01159-HDR.dng": [
+     "WarpRectilinear"
+    ]
+   },
+   "default_render_vs_reference": {
+    "new": {
+     "blocks": 70514,
+     "de2000_median": 0.817,
+     "de2000_p90": 1.74,
+     "dL_mean": -0.149,
+     "da_mean": -0.315,
+     "db_mean": -0.199,
+     "neutral_blocks": 28887,
+     "neutral_ref_ab": [
+      -0.813,
+      0.947
+     ],
+     "neutral_hdr_ab": [
+      -1.027,
+      0.971
+     ]
+    },
+    "old": {
+     "blocks": 70674,
+     "de2000_median": 11.364,
+     "de2000_p90": 17.638,
+     "dL_mean": -11.374,
+     "da_mean": 0.585,
+     "db_mean": 4.376,
+     "neutral_blocks": 28929,
+     "neutral_ref_ab": [
+      -0.816,
+      0.943
+     ],
+     "neutral_hdr_ab": [
+      0.041,
+      6.177
+     ]
+    }
+   },
+   "same_wb_render_vs_reference": {
+    "5000K_tint0": {
+     "blocks": 70438,
+     "de2000_median": 12.453,
+     "de2000_p90": 14.605,
+     "dL_mean": -1.646,
+     "da_mean": -13.418,
+     "db_mean": 1.42,
+     "neutral_blocks": 28538,
+     "neutral_ref_ab": [
+      -2.088,
+      1.405
+     ],
+     "neutral_hdr_ab": [
+      -14.459,
+      3.175
+     ]
+    },
+    "3200K_tint0": {
+     "blocks": 66674,
+     "de2000_median": 13.127,
+     "de2000_p90": 14.659,
+     "dL_mean": -1.177,
+     "da_mean": -14.382,
+     "db_mean": 10.005,
+     "neutral_blocks": 3667,
+     "neutral_ref_ab": [
+      2.169,
+      -0.473
+     ],
+     "neutral_hdr_ab": [
+      -7.14,
+      1.043
+     ]
+    }
+   }
+  },
+  "sony-01171-cocina": {
+   "files": {
+    "ref": "DSC01171.ARW",
+    "new": "cli3/DSC01171-HDR.dng",
+    "old": "cli2/DSC01171-HDR.dng",
+    "app": "DSC01171-HDR-2.dng"
+   },
+   "cli_merge_seconds": 53.8,
+   "reference": 1,
+   "develop_get_as_shot": {
+    "ref": {
+     "mode": "asShot",
+     "scale": "kelvin",
+     "temp": 3932.0,
+     "tint": 7.0
+    },
+    "new": {
+     "mode": "asShot",
+     "scale": "kelvin",
+     "temp": 6113.0,
+     "tint": 115.0
+    },
+    "old": {
+     "mode": "asShot",
+     "scale": "kelvin",
+     "temp": 6502.0,
+     "tint": 10.0
+    },
+    "app": {
+     "mode": "asShot",
+     "scale": "kelvin",
+     "temp": 6113.0,
+     "tint": 115.0
+    }
+   },
+   "dng_colour_tags": {
+    "new": {
+     "tags": {
+      "ColorMatrix1": [
+       1.910071,
+       -1.064355,
+       0.096688,
+       -0.567837,
+       1.474892,
+       -0.083536,
+       0.259712,
+       -0.009538,
+       0.482641
+      ],
+      "ForwardMatrix1": [
+       0.386344,
+       0.642826,
+       -0.037832,
+       0.146885,
+       0.839549,
+       0.033325,
+       -0.193248,
+       -0.290014,
+       1.259435
+      ],
+      "AsShotNeutral": [
+       0.475836,
+       1.0,
+       0.528926
+      ],
+      "CalibrationIlluminant1": [
+       21
+      ],
+      "BaselineExposure": [
+       2.062454
+      ],
+      "ProfileHueSatMapDims": [
+       72,
+       5,
+       5
+      ],
+      "ProfileHueSatMapData1": "present (5400 values)",
+      "ProfileToneCurve": "present (516 values)"
+     },
+     "as_shot_xy": [
+      0.313129,
+      0.408084
+     ],
+     "as_shot_cct_duv": [
+      6125.290103,
+      0.038481
+     ]
+    },
+    "old": {
+     "tags": {
+      "BaselineExposure": [
+       2.088418
+      ]
+     },
+     "as_shot_xy": null,
+     "as_shot_cct_duv": null
+    },
+    "app": {
+     "tags": {
+      "ColorMatrix1": [
+       1.910071,
+       -1.064355,
+       0.096688,
+       -0.567837,
+       1.474892,
+       -0.083536,
+       0.259712,
+       -0.009538,
+       0.482641
+      ],
+      "ForwardMatrix1": [
+       0.386344,
+       0.642826,
+       -0.037832,
+       0.146885,
+       0.839549,
+       0.033325,
+       -0.193248,
+       -0.290014,
+       1.259435
+      ],
+      "AsShotNeutral": [
+       0.475836,
+       1.0,
+       0.528926
+      ],
+      "CalibrationIlluminant1": [
+       21
+      ],
+      "BaselineExposure": [
+       2.062454
+      ],
+      "ProfileHueSatMapDims": [
+       72,
+       5,
+       5
+      ],
+      "ProfileHueSatMapData1": "present (5400 values)",
+      "ProfileToneCurve": "present (516 values)"
+     },
+     "as_shot_xy": [
+      0.313129,
+      0.408084
+     ],
+     "as_shot_cct_duv": [
+      6125.290103,
+      0.038481
+     ]
+    }
+   },
+   "dng_opcodes": {
+    "DSC01171-HDR.dng": [
+     "WarpRectilinear"
+    ]
+   },
+   "default_render_vs_reference": {
+    "new": {
+     "blocks": 62747,
+     "de2000_median": 0.503,
+     "de2000_p90": 1.528,
+     "dL_mean": -0.045,
+     "da_mean": 0.09,
+     "db_mean": 0.34,
+     "neutral_blocks": 16540,
+     "neutral_ref_ab": [
+      -0.181,
+      1.507
+     ],
+     "neutral_hdr_ab": [
+      -0.23,
+      1.548
+     ]
+    },
+    "old": {
+     "blocks": 63051,
+     "de2000_median": 7.808,
+     "de2000_p90": 19.558,
+     "dL_mean": -7.43,
+     "da_mean": 3.479,
+     "db_mean": 10.289,
+     "neutral_blocks": 16587,
+     "neutral_ref_ab": [
+      -0.186,
+      1.498
+     ],
+     "neutral_hdr_ab": [
+      3.618,
+      16.35
+     ]
+    },
+    "app": {
+     "blocks": 62747,
+     "de2000_median": 0.503,
+     "de2000_p90": 1.528,
+     "dL_mean": -0.045,
+     "da_mean": 0.09,
+     "db_mean": 0.34,
+     "neutral_blocks": 16540,
+     "neutral_ref_ab": [
+      -0.181,
+      1.507
+     ],
+     "neutral_hdr_ab": [
+      -0.23,
+      1.548
+     ]
+    }
+   },
+   "same_wb_render_vs_reference": {
+    "5000K_tint0": {
+     "blocks": 63183,
+     "de2000_median": 13.102,
+     "de2000_p90": 15.176,
+     "dL_mean": -1.281,
+     "da_mean": -13.57,
+     "db_mean": 1.952,
+     "neutral_blocks": 713,
+     "neutral_ref_ab": [
+      -2.65,
+      3.484
+     ],
+     "neutral_hdr_ab": [
+      -14.548,
+      4.831
+     ]
+    },
+    "3200K_tint0": {
+     "blocks": 62525,
+     "de2000_median": 10.93,
+     "de2000_p90": 14.55,
+     "dL_mean": 2.346,
+     "da_mean": -10.852,
+     "db_mean": 4.262,
+     "neutral_blocks": 38087,
+     "neutral_ref_ab": [
+      -1.296,
+      1.94
+     ],
+     "neutral_hdr_ab": [
+      -11.099,
+      5.896
+     ]
+    }
+   }
+  }
+ }
+}
