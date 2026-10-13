@@ -65,6 +65,6 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           tag="a7iii-hdr-$(date -u +%Y%m%d)-${GITHUB_SHA::7}"
-          notes="LightCraft $LIGHTCRAFT_VERSION con la corrección de distorsión de la Sony A7 III (ILCE-7M3) habilitada y los HDR que conservan la corrección de lente. Compilado de ${GITHUB_SHA::9}, sin firmar: Windows muestra \"Windows protegió tu PC\" → Más información → Ejecutar de todas formas. Reemplaza a la versión oficial instalada; la próxima versión oficial la reemplaza a su vez."
+          notes="LightCraft $LIGHTCRAFT_VERSION con la corrección de distorsión de la Sony A7 III (ILCE-7M3) habilitada; HDR que conservan la corrección de lente, abren con el balance de blancos del ARW y no se tiñen de magenta junto a las zonas quemadas; el mismo HDR sea cual sea el orden de las fotos. Compilado de ${GITHUB_SHA::9}, sin firmar: Windows muestra \"Windows protegió tu PC\" → Más información → Ejecutar de todas formas. Reemplaza a la versión oficial instalada; la próxima versión oficial la reemplaza a su vez."
           gh release create "$tag" dist/release/* --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
             --prerelease --title "LightCraft $LIGHTCRAFT_VERSION (A7 III + HDR)" --notes "$notes"
