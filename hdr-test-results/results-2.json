@@ -1,0 +1,3747 @@
+{
+ "round": "round2",
+ "lightcraft_version": "lightcraft-cli 0.7.1",
+ "method": {
+  "renders": "lightcraft-cli render, 16-bit TIFF, full size; correction on = {optics: {lens_profile: true, profile_distortion: 100}}, off = lens_profile false",
+  "isolation": "every rendered file is a copy with an empty XMP sidecar next to it (the sidecar wins over embedded XMP), verified with develop.get",
+  "geometry": "SIFT on 3000 px greyscale (CLAHE), RANSAC similarity (threshold 1 % of width) then least squares; residuals in full-size pixels; core = points within 5x the median",
+  "pixel_diff": "absolute difference of 16-bit renders, in 8-bit levels",
+  "tone": "regions from the reference frame render: windows = any channel >= 99 % (opened 7 px), shadows = darkest 10 %, mids = 40-60th percentile; median log2 linear luminance"
+ },
+ "sets": {
+  "sony-01150-living": {
+   "frames": [
+    {
+     "file": "DSC01150.ARW",
+     "time": "2025:11:08 12:17:51",
+     "shutter_s": 0.00625,
+     "f_number": 8.0,
+     "iso": 500,
+     "exposure_bias_ev": 0.0,
+     "focal_mm": 16.0,
+     "lens": "FE 16-35mm F4 ZA OSS",
+     "model": "ILCE-7M3"
+    },
+    {
+     "file": "DSC01151.ARW",
+     "time": "2025:11:08 12:17:51",
+     "shutter_s": 0.00625,
+     "f_number": 8.0,
+     "iso": 125,
+     "exposure_bias_ev": -2.0,
+     "focal_mm": 16.0,
+     "lens": "FE 16-35mm F4 ZA OSS",
+     "model": "ILCE-7M3"
+    },
+    {
+     "file": "DSC01152.ARW",
+     "time": "2025:11:08 12:17:51",
+     "shutter_s": 0.00625,
+     "f_number": 8.0,
+     "iso": 2000,
+     "exposure_bias_ev": 2.0,
+     "focal_mm": 16.0,
+     "lens": "FE 16-35mm F4 ZA OSS",
+     "model": "ILCE-7M3"
+    }
+   ],
+   "reference_frame": "DSC01150.ARW",
+   "merge_cli": {
+    "file": "cli2/DSC01150-HDR.dng",
+    "seconds": 21.7,
+    "ev_measured": [
+     0.0,
+     -1.994,
+     1.983
+    ],
+    "ev_exif": [
+     0.0,
+     -2.0,
+     2.0
+    ],
+    "alignment": [
+     {
+      "inliers": 0,
+      "model": "identity",
+      "rmsPx": 0.0
+     },
+     {
+      "inliers": 1133,
+      "model": "translation",
+      "rmsPx": 1.8362509348022282
+     },
+     {
+      "inliers": 1176,
+      "model": "translation",
+      "rmsPx": 1.8665131505240158
+     }
+    ],
+    "size": [
+     6000,
+     4000
+    ],
+    "bytes": 85520842
+   },
+   "merge_app": {
+    "file": "DSC01150-HDR.dng",
+    "user_reported_merge_seconds": "~12 (approximate, given once for all four sets)",
+    "options": "Auto Align on, Deghost None",
+    "first_photo": "DSC01150",
+    "same_bytes_as_cli": true
+   },
+   "lightroom_hdr": "DSC01152-HDR.dng",
+   "start_state": {
+    "ref": {
+     "wb": {
+      "mode": "asShot",
+      "scale": "kelvin",
+      "temp": 4813.0,
+      "tint": 8.0
+     },
+     "light_all_zero": true,
+     "lens_profile": true,
+     "crop_full": true,
+     "masks": 0,
+     "spots": 0
+    },
+    "cli": {
+     "wb": {
+      "mode": "asShot",
+      "scale": "kelvin",
+      "temp": 6502.0,
+      "tint": 10.0
+     },
+     "light_all_zero": true,
+     "lens_profile": true,
+     "crop_full": true,
+     "masks": 0,
+     "spots": 0
+    },
+    "app": {
+     "wb": {
+      "mode": "asShot",
+      "scale": "kelvin",
+      "temp": 6502.0,
+      "tint": 10.0
+     },
+     "light_all_zero": true,
+     "lens_profile": true,
+     "crop_full": true,
+     "masks": 0,
+     "spots": 0
+    },
+    "lr": {
+     "light_all_zero": true,
+     "lens_profile": false,
+     "crop_full": true,
+     "masks": 0,
+     "spots": 0
+    },
+    "lr_embedded_xmp_would_apply_without_sidecar": {
+     "light_all_zero": false,
+     "crop_full": false,
+     "masks": 2,
+     "spots": 0
+    }
+   },
+   "4a_correction_on_vs_off": {
+    "ref": {
+     "same_size": true,
+     "mean_8bit": 6.894,
+     "max_8bit": 255.0,
+     "p99_8bit": 72.019,
+     "frac_pixels_gt_1_level": 0.97,
+     "identical": false
+    },
+    "cli": {
+     "same_size": true,
+     "mean_8bit": 4.519,
+     "max_8bit": 255.0,
+     "p99_8bit": 54.77,
+     "frac_pixels_gt_1_level": 0.929,
+     "identical": false
+    },
+    "app": {
+     "same_size": true,
+     "mean_8bit": 4.519,
+     "max_8bit": 255.0,
+     "p99_8bit": 54.77,
+     "frac_pixels_gt_1_level": 0.929,
+     "identical": false
+    },
+    "lr": {
+     "same_size": true,
+     "mean_8bit": 0.0,
+     "max_8bit": 0.0,
+     "p99_8bit": 0.0,
+     "frac_pixels_gt_1_level": 0.0,
+     "identical": true
+    }
+   },
+   "4b_geometry": {
+    "reference_on_vs_cli_hdr_on": {
+     "median_px": 0.41,
+     "p95_px": 1.83,
+     "n_points": 4681,
+     "scale": 1.00018,
+     "rotation_deg": 0.0028,
+     "shift_px": [
+      0.23,
+      0.04
+     ],
+     "core_median_px": 0.39,
+     "core_p95_px": 1.33,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 1375,
+       "median_px": 0.32,
+       "radial_mean_px": -0.16
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 2074,
+       "median_px": 0.35,
+       "radial_mean_px": -0.01
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 1019,
+       "median_px": 0.6,
+       "radial_mean_px": 0.05
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 202,
+       "median_px": 0.96,
+       "radial_mean_px": 0.24
+      },
+      {
+       "r": "0.90-1.00",
+       "n": 11,
+       "median_px": 1.07,
+       "radial_mean_px": -2.82
+      }
+     ],
+     "reach_r": 0.94,
+     "image_size": [
+      6000,
+      4000
+     ]
+    },
+    "reference_off_vs_cli_hdr_off_control": {
+     "median_px": 0.41,
+     "p95_px": 1.88,
+     "n_points": 4499,
+     "scale": 1.00013,
+     "rotation_deg": 0.0034,
+     "shift_px": [
+      0.25,
+      0.02
+     ],
+     "core_median_px": 0.39,
+     "core_p95_px": 1.33,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 1307,
+       "median_px": 0.37,
+       "radial_mean_px": -0.16
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 1989,
+       "median_px": 0.35,
+       "radial_mean_px": -0.13
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 961,
+       "median_px": 0.53,
+       "radial_mean_px": 0.09
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 213,
+       "median_px": 1.0,
+       "radial_mean_px": 0.31
+      },
+      {
+       "r": "0.90-1.00",
+       "n": 29,
+       "median_px": 1.18,
+       "radial_mean_px": 0.21
+      }
+     ],
+     "reach_r": 0.94,
+     "image_size": [
+      6000,
+      4000
+     ]
+    },
+    "reference_on_vs_app_hdr_on": {
+     "median_px": 0.41,
+     "p95_px": 1.83,
+     "n_points": 4681,
+     "scale": 1.00018,
+     "rotation_deg": 0.0028,
+     "shift_px": [
+      0.23,
+      0.04
+     ],
+     "core_median_px": 0.39,
+     "core_p95_px": 1.33,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 1375,
+       "median_px": 0.32,
+       "radial_mean_px": -0.16
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 2074,
+       "median_px": 0.35,
+       "radial_mean_px": -0.01
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 1019,
+       "median_px": 0.6,
+       "radial_mean_px": 0.05
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 202,
+       "median_px": 0.96,
+       "radial_mean_px": 0.24
+      },
+      {
+       "r": "0.90-1.00",
+       "n": 11,
+       "median_px": 1.07,
+       "radial_mean_px": -2.82
+      }
+     ],
+     "reach_r": 0.94,
+     "image_size": [
+      6000,
+      4000
+     ]
+    },
+    "reference_off_vs_app_hdr_off_control": {
+     "median_px": 0.41,
+     "p95_px": 1.88,
+     "n_points": 4499,
+     "scale": 1.00013,
+     "rotation_deg": 0.0034,
+     "shift_px": [
+      0.25,
+      0.02
+     ],
+     "core_median_px": 0.39,
+     "core_p95_px": 1.33,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 1307,
+       "median_px": 0.37,
+       "radial_mean_px": -0.16
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 1989,
+       "median_px": 0.35,
+       "radial_mean_px": -0.13
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 961,
+       "median_px": 0.53,
+       "radial_mean_px": 0.09
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 213,
+       "median_px": 1.0,
+       "radial_mean_px": 0.31
+      },
+      {
+       "r": "0.90-1.00",
+       "n": 29,
+       "median_px": 1.18,
+       "radial_mean_px": 0.21
+      }
+     ],
+     "reach_r": 0.94,
+     "image_size": [
+      6000,
+      4000
+     ]
+    },
+    "reference_on_vs_reference_off": {
+     "median_px": 11.75,
+     "p95_px": 32.02,
+     "n_points": 5914,
+     "scale": 1.00078,
+     "rotation_deg": 0.0034,
+     "shift_px": [
+      3.7,
+      -2.38
+     ],
+     "core_median_px": 11.75,
+     "core_p95_px": 31.39,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 1520,
+       "median_px": 10.44,
+       "radial_mean_px": 9.56
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 2542,
+       "median_px": 13.53,
+       "radial_mean_px": 12.5
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 1573,
+       "median_px": 6.69,
+       "radial_mean_px": -5.07
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 262,
+       "median_px": 38.66,
+       "radial_mean_px": -39.19
+      },
+      {
+       "r": "0.90-1.00",
+       "n": 17,
+       "median_px": 53.0,
+       "radial_mean_px": -43.52
+      }
+     ],
+     "reach_r": 0.95,
+     "image_size": [
+      6000,
+      4000
+     ]
+    }
+   },
+   "4c_lightroom_dng": {
+    "dng_version": "1.7.0.0",
+    "size": [
+     6000,
+     4000
+    ],
+    "default_crop_origin": [
+     0.0,
+     0.0
+    ],
+    "default_crop_size": [
+     6000.0,
+     4000.0
+    ],
+    "samples_per_pixel": 3,
+    "bits_per_sample": [
+     16,
+     16,
+     16
+    ],
+    "sample_format": "float",
+    "photometric": "LinearRaw",
+    "compression": "JPEG XL",
+    "baseline_exposure": 2.35,
+    "opcode_lists": "none",
+    "colour_and_profile_tags_present": [
+     "AsShotNeutral",
+     "CameraCalibration1",
+     "CameraCalibration2",
+     "ColorMatrix1",
+     "ColorMatrix2",
+     "ForwardMatrix1",
+     "ForwardMatrix2",
+     "ProfileEmbedPolicy",
+     "ProfileHueSatMapDims",
+     "ProfileLookTableDims",
+     "ProfileName"
+    ],
+    "embedded_xmp_with_develop_settings": true,
+    "other_images": [
+     {
+      "subfile_type": 4,
+      "size": [
+       6000,
+       4000
+      ]
+     },
+     {
+      "subfile_type": 1,
+      "size": [
+       1024,
+       683
+      ]
+     },
+     {
+      "subfile_type": 1,
+      "size": [
+       2048,
+       1365
+      ]
+     },
+     {
+      "subfile_type": 5,
+      "size": [
+       2048,
+       1365
+      ]
+     },
+     {
+      "subfile_type": 1,
+      "size": [
+       512,
+       341
+      ]
+     },
+     {
+      "subfile_type": 5,
+      "size": [
+       512,
+       341
+      ]
+     },
+     {
+      "subfile_type": 1,
+      "size": [
+       256,
+       171
+      ]
+     },
+     {
+      "subfile_type": 5,
+      "size": [
+       256,
+       171
+      ]
+     }
+    ]
+   },
+   "4c_lightroom_geometry": {
+    "vs_reference_uncorrected": {
+     "median_px": 0.4,
+     "p95_px": 2.18,
+     "n_points": 4382,
+     "scale": 1.00029,
+     "rotation_deg": -0.0081,
+     "shift_px": [
+      0.82,
+      0.2
+     ],
+     "core_median_px": 0.37,
+     "core_p95_px": 1.34,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 1260,
+       "median_px": 0.39,
+       "radial_mean_px": -0.04
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 1889,
+       "median_px": 0.33,
+       "radial_mean_px": -0.01
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 996,
+       "median_px": 0.45,
+       "radial_mean_px": 0.01
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 207,
+       "median_px": 0.93,
+       "radial_mean_px": -0.07
+      },
+      {
+       "r": "0.90-1.00",
+       "n": 30,
+       "median_px": 1.05,
+       "radial_mean_px": 0.42
+      }
+     ],
+     "reach_r": 0.94,
+     "image_size": [
+      6000,
+      4000
+     ]
+    },
+    "vs_reference_corrected": {
+     "median_px": 10.97,
+     "p95_px": 29.03,
+     "n_points": 4482,
+     "scale": 1.00165,
+     "rotation_deg": -0.02,
+     "shift_px": [
+      6.48,
+      -2.36
+     ],
+     "core_median_px": 10.96,
+     "core_p95_px": 27.73,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 1290,
+       "median_px": 9.16,
+       "radial_mean_px": 8.11
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 1964,
+       "median_px": 12.42,
+       "radial_mean_px": 11.42
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 1027,
+       "median_px": 7.26,
+       "radial_mean_px": -5.36
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 193,
+       "median_px": 38.86,
+       "radial_mean_px": -39.67
+      },
+      {
+       "r": "0.90-1.00",
+       "n": 8,
+       "median_px": 54.05,
+       "radial_mean_px": -42.52
+      }
+     ],
+     "reach_r": 0.94,
+     "image_size": [
+      6000,
+      4000
+     ]
+    },
+    "vs_lightcraft_hdr_on": {
+     "median_px": 11.32,
+     "p95_px": 33.92,
+     "n_points": 4842,
+     "scale": 1.00134,
+     "rotation_deg": -0.031,
+     "shift_px": [
+      5.45,
+      -2.64
+     ],
+     "core_median_px": 11.32,
+     "core_p95_px": 33.76,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 1354,
+       "median_px": 9.57,
+       "radial_mean_px": 8.59
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 2170,
+       "median_px": 13.08,
+       "radial_mean_px": 11.92
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 1070,
+       "median_px": 6.78,
+       "radial_mean_px": -4.94
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 231,
+       "median_px": 38.93,
+       "radial_mean_px": -39.62
+      },
+      {
+       "r": "0.90-1.00",
+       "n": 17,
+       "median_px": 53.04,
+       "radial_mean_px": -49.0
+      }
+     ],
+     "reach_r": 0.95,
+     "image_size": [
+      6000,
+      4000
+     ]
+    }
+   },
+   "4c_lightcraft_dng": {
+    "dng_version": "1.4.0.0",
+    "size": [
+     6000,
+     4000
+    ],
+    "default_crop_origin": [
+     0,
+     0
+    ],
+    "default_crop_size": [
+     6000,
+     4000
+    ],
+    "samples_per_pixel": 3,
+    "bits_per_sample": [
+     16,
+     16,
+     16
+    ],
+    "sample_format": "float",
+    "photometric": "LinearRaw",
+    "compression": "Deflate",
+    "baseline_exposure": 1.95845,
+    "opcode_lists": {
+     "OpcodeList3": [
+      "WarpRectilinear"
+     ]
+    },
+    "colour_and_profile_tags_present": [],
+    "embedded_xmp_with_develop_settings": false,
+    "other_images": []
+   },
+   "4c_lightcraft_app_dng": {
+    "dng_version": "1.4.0.0",
+    "size": [
+     6000,
+     4000
+    ],
+    "default_crop_origin": [
+     0,
+     0
+    ],
+    "default_crop_size": [
+     6000,
+     4000
+    ],
+    "samples_per_pixel": 3,
+    "bits_per_sample": [
+     16,
+     16,
+     16
+    ],
+    "sample_format": "float",
+    "photometric": "LinearRaw",
+    "compression": "Deflate",
+    "baseline_exposure": 1.95845,
+    "opcode_lists": {
+     "OpcodeList3": [
+      "WarpRectilinear"
+     ]
+    },
+    "colour_and_profile_tags_present": [],
+    "embedded_xmp_with_develop_settings": false,
+    "other_images": []
+   },
+   "vs_round1_renders": {
+    "cli_off": {
+     "same_size": true,
+     "mean_8bit": 0.0,
+     "max_8bit": 0.0,
+     "p99_8bit": 0.0,
+     "frac_pixels_gt_1_level": 0.0,
+     "identical": true
+    },
+    "ref_off": {
+     "same_size": true,
+     "mean_8bit": 0.0,
+     "max_8bit": 0.0,
+     "p99_8bit": 0.0,
+     "frac_pixels_gt_1_level": 0.0,
+     "identical": true
+    },
+    "ref_on": {
+     "same_size": true,
+     "mean_8bit": 0.0,
+     "max_8bit": 0.0,
+     "p99_8bit": 0.0,
+     "frac_pixels_gt_1_level": 0.0,
+     "identical": true
+    }
+   },
+   "4d": {
+    "alignment_lr_vs_lightcraft_similarity": {
+     "median_px": 0.33,
+     "p95_px": 1.36,
+     "n_points": 4912,
+     "scale": 1.0001,
+     "rotation_deg": -0.0151,
+     "shift_px": [
+      0.52,
+      0.16
+     ],
+     "core_median_px": 0.33,
+     "core_p95_px": 1.07,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 1370,
+       "median_px": 0.31,
+       "radial_mean_px": 0.11
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 2105,
+       "median_px": 0.31,
+       "radial_mean_px": 0.09
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 1134,
+       "median_px": 0.38,
+       "radial_mean_px": -0.04
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 265,
+       "median_px": 0.51,
+       "radial_mean_px": -0.36
+      },
+      {
+       "r": "0.90-1.00",
+       "n": 38,
+       "median_px": 0.56,
+       "radial_mean_px": 0.16
+      }
+     ],
+     "reach_r": 0.95,
+     "image_size": [
+      6000,
+      4000
+     ]
+    },
+    "alignment_lr_vs_lightcraft_after_radial_warp": {
+     "median_px": 0.31,
+     "p95_px": 1.22,
+     "n_points": 5306,
+     "scale": 1.00003,
+     "rotation_deg": 0.0021,
+     "shift_px": [
+      0.02,
+      -0.03
+     ],
+     "core_median_px": 0.3,
+     "core_p95_px": 1.04,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 1463,
+       "median_px": 0.28,
+       "radial_mean_px": -0.0
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 2301,
+       "median_px": 0.28,
+       "radial_mean_px": 0.01
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 1223,
+       "median_px": 0.36,
+       "radial_mean_px": 0.04
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 283,
+       "median_px": 0.43,
+       "radial_mean_px": -0.26
+      },
+      {
+       "r": "0.90-1.00",
+       "n": 36,
+       "median_px": 0.45,
+       "radial_mean_px": 0.34
+      }
+     ],
+     "reach_r": 0.95,
+     "image_size": [
+      6000,
+      4000
+     ]
+    },
+    "tone_regions": {
+     "windows_frac": 0.0095,
+     "shadows_frac": 0.0855
+    },
+    "tone": {
+     "cli": {
+      "mid_log2": -4.204,
+      "shadow_log2": -6.005,
+      "window_log2": 0.0,
+      "window_clipped_frac": 0.847,
+      "window_local_sd_log2": 0.0,
+      "window_minus_mid": 4.204,
+      "shadow_minus_mid": -1.801
+     },
+     "lr": {
+      "mid_log2": -4.014,
+      "shadow_log2": -5.816,
+      "window_log2": 0.0,
+      "window_clipped_frac": 0.909,
+      "window_local_sd_log2": 0.0,
+      "window_minus_mid": 4.014,
+      "shadow_minus_mid": -1.802
+     },
+     "cli_m3": {
+      "mid_log2": -7.174,
+      "shadow_log2": -8.996,
+      "window_log2": -1.995,
+      "window_clipped_frac": 0.0,
+      "window_local_sd_log2": 0.137,
+      "window_minus_mid": 5.178,
+      "shadow_minus_mid": -1.823
+     },
+     "lr_m3": {
+      "mid_log2": -6.98,
+      "shadow_log2": -8.801,
+      "window_log2": -1.705,
+      "window_clipped_frac": 0.0,
+      "window_local_sd_log2": 0.122,
+      "window_minus_mid": 5.275,
+      "shadow_minus_mid": -1.821
+     }
+    },
+    "disagreement_minus3ev": {
+     "frac_gt_0.5EV": 0.0,
+     "frac_gt_1EV": 0.0,
+     "median_abs_EV": 0.0085
+    },
+    "frames_vs_reference": {
+     "DSC01151.ARW": {
+      "scale": 1.0,
+      "rotation_deg": -0.0083,
+      "shift_px": [
+       0.58,
+       0.33
+      ],
+      "edge_px_left_by_translation": 0.52
+     },
+     "DSC01152.ARW": {
+      "scale": 1.00027,
+      "rotation_deg": 0.0125,
+      "shift_px": [
+       1.4,
+       0.35
+      ],
+      "edge_px_left_by_translation": 1.26
+     }
+    },
+    "magenta_in_windows_minus3ev": {
+     "window_pixels": 227630,
+     "lightcraft": {
+      "frac_magenta": 0.00849,
+      "lit_pixels": 227630.0
+     },
+     "lightroom": {
+      "frac_magenta": 7e-05,
+      "lit_pixels": 227630.0
+     }
+    }
+   },
+   "app_vs_cli_render": {
+    "same_size": true,
+    "mean_8bit": 0.0,
+    "max_8bit": 0.0,
+    "p99_8bit": 0.0,
+    "frac_pixels_gt_1_level": 0.0,
+    "identical": true
+   }
+  },
+  "sony-01159-comedor": {
+   "frames": [
+    {
+     "file": "DSC01159.ARW",
+     "time": "2025:11:08 12:21:40",
+     "shutter_s": 0.0015625,
+     "f_number": 8.0,
+     "iso": 500,
+     "exposure_bias_ev": 0.0,
+     "focal_mm": 16.0,
+     "lens": "FE 16-35mm F4 ZA OSS",
+     "model": "ILCE-7M3"
+    },
+    {
+     "file": "DSC01160.ARW",
+     "time": "2025:11:08 12:21:40",
+     "shutter_s": 0.0015625,
+     "f_number": 8.0,
+     "iso": 125,
+     "exposure_bias_ev": -2.0,
+     "focal_mm": 16.0,
+     "lens": "FE 16-35mm F4 ZA OSS",
+     "model": "ILCE-7M3"
+    },
+    {
+     "file": "DSC01161.ARW",
+     "time": "2025:11:08 12:21:40",
+     "shutter_s": 0.0015625,
+     "f_number": 8.0,
+     "iso": 2000,
+     "exposure_bias_ev": 2.0,
+     "focal_mm": 16.0,
+     "lens": "FE 16-35mm F4 ZA OSS",
+     "model": "ILCE-7M3"
+    }
+   ],
+   "reference_frame": "DSC01159.ARW",
+   "merge_cli": {
+    "file": "cli2/DSC01159-HDR.dng",
+    "seconds": 19.2,
+    "ev_measured": [
+     0.0,
+     -1.994,
+     1.986
+    ],
+    "ev_exif": [
+     0.0,
+     -2.0,
+     2.0
+    ],
+    "alignment": [
+     {
+      "inliers": 0,
+      "model": "identity",
+      "rmsPx": 0.0
+     },
+     {
+      "inliers": 1256,
+      "model": "translation",
+      "rmsPx": 1.5637946605919324
+     },
+     {
+      "inliers": 1115,
+      "model": "translation",
+      "rmsPx": 2.19350041488211
+     }
+    ],
+    "size": [
+     6000,
+     4000
+    ],
+    "bytes": 80643102
+   },
+   "merge_app": {
+    "file": "DSC01159-HDR-2.dng",
+    "user_reported_merge_seconds": "~12 (approximate, given once for all four sets)",
+    "options": "Auto Align on, Deghost None",
+    "first_photo": "DSC01159",
+    "same_bytes_as_cli": true
+   },
+   "lightroom_hdr": "DSC01161-HDR.dng",
+   "start_state": {
+    "ref": {
+     "wb": {
+      "mode": "asShot",
+      "scale": "kelvin",
+      "temp": 5268.0,
+      "tint": 8.0
+     },
+     "light_all_zero": true,
+     "lens_profile": true,
+     "crop_full": true,
+     "masks": 0,
+     "spots": 0
+    },
+    "cli": {
+     "wb": {
+      "mode": "asShot",
+      "scale": "kelvin",
+      "temp": 6502.0,
+      "tint": 10.0
+     },
+     "light_all_zero": true,
+     "lens_profile": true,
+     "crop_full": true,
+     "masks": 0,
+     "spots": 0
+    },
+    "app": {
+     "wb": {
+      "mode": "asShot",
+      "scale": "kelvin",
+      "temp": 6502.0,
+      "tint": 10.0
+     },
+     "light_all_zero": true,
+     "lens_profile": true,
+     "crop_full": true,
+     "masks": 0,
+     "spots": 0
+    },
+    "lr": {
+     "light_all_zero": true,
+     "lens_profile": false,
+     "crop_full": true,
+     "masks": 0,
+     "spots": 0
+    },
+    "lr_embedded_xmp_would_apply_without_sidecar": {
+     "light_all_zero": false,
+     "crop_full": false,
+     "masks": 2,
+     "spots": 0
+    }
+   },
+   "4a_correction_on_vs_off": {
+    "ref": {
+     "same_size": true,
+     "mean_8bit": 8.983,
+     "max_8bit": 255.0,
+     "p99_8bit": 103.144,
+     "frac_pixels_gt_1_level": 0.981,
+     "identical": false
+    },
+    "cli": {
+     "same_size": true,
+     "mean_8bit": 5.328,
+     "max_8bit": 255.0,
+     "p99_8bit": 68.393,
+     "frac_pixels_gt_1_level": 0.933,
+     "identical": false
+    },
+    "app": {
+     "same_size": true,
+     "mean_8bit": 5.328,
+     "max_8bit": 255.0,
+     "p99_8bit": 68.393,
+     "frac_pixels_gt_1_level": 0.933,
+     "identical": false
+    },
+    "lr": {
+     "same_size": true,
+     "mean_8bit": 0.0,
+     "max_8bit": 0.0,
+     "p99_8bit": 0.0,
+     "frac_pixels_gt_1_level": 0.0,
+     "identical": true
+    }
+   },
+   "4b_geometry": {
+    "reference_on_vs_cli_hdr_on": {
+     "median_px": 0.6,
+     "p95_px": 2.45,
+     "n_points": 4025,
+     "scale": 0.9999,
+     "rotation_deg": -0.0399,
+     "shift_px": [
+      -0.29,
+      -0.73
+     ],
+     "core_median_px": 0.58,
+     "core_p95_px": 1.88,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 1090,
+       "median_px": 0.47,
+       "radial_mean_px": -0.23
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 1289,
+       "median_px": 0.64,
+       "radial_mean_px": -0.31
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 1389,
+       "median_px": 0.61,
+       "radial_mean_px": 0.08
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 256,
+       "median_px": 0.98,
+       "radial_mean_px": 0.46
+      },
+      {
+       "r": "0.90-1.00",
+       "n": 1,
+       "median_px": 1.82,
+       "radial_mean_px": 0.41
+      }
+     ],
+     "reach_r": 0.9,
+     "image_size": [
+      6000,
+      4000
+     ]
+    },
+    "reference_off_vs_cli_hdr_off_control": {
+     "median_px": 0.62,
+     "p95_px": 2.83,
+     "n_points": 3923,
+     "scale": 0.99995,
+     "rotation_deg": -0.0433,
+     "shift_px": [
+      -0.27,
+      -0.81
+     ],
+     "core_median_px": 0.59,
+     "core_p95_px": 1.91,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 1015,
+       "median_px": 0.51,
+       "radial_mean_px": -0.25
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 1259,
+       "median_px": 0.65,
+       "radial_mean_px": -0.35
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 1371,
+       "median_px": 0.62,
+       "radial_mean_px": 0.11
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 278,
+       "median_px": 1.05,
+       "radial_mean_px": 0.33
+      }
+     ],
+     "reach_r": 0.9,
+     "image_size": [
+      6000,
+      4000
+     ]
+    },
+    "reference_on_vs_app_hdr_on": {
+     "median_px": 0.6,
+     "p95_px": 2.45,
+     "n_points": 4025,
+     "scale": 0.9999,
+     "rotation_deg": -0.0399,
+     "shift_px": [
+      -0.29,
+      -0.73
+     ],
+     "core_median_px": 0.58,
+     "core_p95_px": 1.88,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 1090,
+       "median_px": 0.47,
+       "radial_mean_px": -0.23
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 1289,
+       "median_px": 0.64,
+       "radial_mean_px": -0.31
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 1389,
+       "median_px": 0.61,
+       "radial_mean_px": 0.08
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 256,
+       "median_px": 0.98,
+       "radial_mean_px": 0.46
+      },
+      {
+       "r": "0.90-1.00",
+       "n": 1,
+       "median_px": 1.82,
+       "radial_mean_px": 0.41
+      }
+     ],
+     "reach_r": 0.9,
+     "image_size": [
+      6000,
+      4000
+     ]
+    },
+    "reference_off_vs_app_hdr_off_control": {
+     "median_px": 0.62,
+     "p95_px": 2.83,
+     "n_points": 3923,
+     "scale": 0.99995,
+     "rotation_deg": -0.0433,
+     "shift_px": [
+      -0.27,
+      -0.81
+     ],
+     "core_median_px": 0.59,
+     "core_p95_px": 1.91,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 1015,
+       "median_px": 0.51,
+       "radial_mean_px": -0.25
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 1259,
+       "median_px": 0.65,
+       "radial_mean_px": -0.35
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 1371,
+       "median_px": 0.62,
+       "radial_mean_px": 0.11
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 278,
+       "median_px": 1.05,
+       "radial_mean_px": 0.33
+      }
+     ],
+     "reach_r": 0.9,
+     "image_size": [
+      6000,
+      4000
+     ]
+    },
+    "reference_on_vs_reference_off": {
+     "median_px": 14.26,
+     "p95_px": 24.31,
+     "n_points": 6002,
+     "scale": 1.00374,
+     "rotation_deg": -0.05,
+     "shift_px": [
+      2.55,
+      -3.31
+     ],
+     "core_median_px": 14.26,
+     "core_p95_px": 24.31,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 1261,
+       "median_px": 14.17,
+       "radial_mean_px": 13.02
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 1977,
+       "median_px": 16.94,
+       "radial_mean_px": 16.48
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 2205,
+       "median_px": 7.74,
+       "radial_mean_px": -2.08
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 543,
+       "median_px": 23.62,
+       "radial_mean_px": -24.95
+      },
+      {
+       "r": "0.90-1.00",
+       "n": 16,
+       "median_px": 43.9,
+       "radial_mean_px": -44.61
+      }
+     ],
+     "reach_r": 0.98,
+     "image_size": [
+      6000,
+      4000
+     ]
+    }
+   },
+   "4c_lightroom_dng": {
+    "dng_version": "1.7.0.0",
+    "size": [
+     6000,
+     4000
+    ],
+    "default_crop_origin": [
+     0.0,
+     0.0
+    ],
+    "default_crop_size": [
+     6000.0,
+     4000.0
+    ],
+    "samples_per_pixel": 3,
+    "bits_per_sample": [
+     16,
+     16,
+     16
+    ],
+    "sample_format": "float",
+    "photometric": "LinearRaw",
+    "compression": "JPEG XL",
+    "baseline_exposure": 2.35,
+    "opcode_lists": "none",
+    "colour_and_profile_tags_present": [
+     "AsShotNeutral",
+     "CameraCalibration1",
+     "CameraCalibration2",
+     "ColorMatrix1",
+     "ColorMatrix2",
+     "ForwardMatrix1",
+     "ForwardMatrix2",
+     "ProfileEmbedPolicy",
+     "ProfileHueSatMapDims",
+     "ProfileLookTableDims",
+     "ProfileName"
+    ],
+    "embedded_xmp_with_develop_settings": true,
+    "other_images": [
+     {
+      "subfile_type": 4,
+      "size": [
+       6000,
+       4000
+      ]
+     },
+     {
+      "subfile_type": 1,
+      "size": [
+       1024,
+       683
+      ]
+     },
+     {
+      "subfile_type": 1,
+      "size": [
+       2048,
+       1365
+      ]
+     },
+     {
+      "subfile_type": 5,
+      "size": [
+       2048,
+       1365
+      ]
+     },
+     {
+      "subfile_type": 1,
+      "size": [
+       512,
+       341
+      ]
+     },
+     {
+      "subfile_type": 5,
+      "size": [
+       512,
+       341
+      ]
+     },
+     {
+      "subfile_type": 1,
+      "size": [
+       256,
+       171
+      ]
+     },
+     {
+      "subfile_type": 5,
+      "size": [
+       256,
+       171
+      ]
+     }
+    ]
+   },
+   "4c_lightroom_geometry": {
+    "vs_reference_uncorrected": {
+     "median_px": 0.5,
+     "p95_px": 2.47,
+     "n_points": 4133,
+     "scale": 1.00002,
+     "rotation_deg": -0.0157,
+     "shift_px": [
+      0.73,
+      -1.43
+     ],
+     "core_median_px": 0.47,
+     "core_p95_px": 1.65,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 1021,
+       "median_px": 0.43,
+       "radial_mean_px": -0.06
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 1303,
+       "median_px": 0.52,
+       "radial_mean_px": -0.2
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 1501,
+       "median_px": 0.5,
+       "radial_mean_px": 0.03
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 308,
+       "median_px": 0.72,
+       "radial_mean_px": 0.2
+      }
+     ],
+     "reach_r": 0.89,
+     "image_size": [
+      6000,
+      4000
+     ]
+    },
+    "vs_reference_corrected": {
+     "median_px": 13.0,
+     "p95_px": 24.62,
+     "n_points": 4192,
+     "scale": 1.00312,
+     "rotation_deg": -0.0614,
+     "shift_px": [
+      3.78,
+      -4.45
+     ],
+     "core_median_px": 13.0,
+     "core_p95_px": 24.62,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 1077,
+       "median_px": 13.03,
+       "radial_mean_px": 12.1
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 1373,
+       "median_px": 15.42,
+       "radial_mean_px": 14.9
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 1454,
+       "median_px": 7.36,
+       "radial_mean_px": -3.71
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 286,
+       "median_px": 25.66,
+       "radial_mean_px": -26.55
+      },
+      {
+       "r": "0.90-1.00",
+       "n": 2,
+       "median_px": 35.02,
+       "radial_mean_px": -30.9
+      }
+     ],
+     "reach_r": 0.97,
+     "image_size": [
+      6000,
+      4000
+     ]
+    },
+    "vs_lightcraft_hdr_on": {
+     "median_px": 13.25,
+     "p95_px": 24.97,
+     "n_points": 4715,
+     "scale": 1.00316,
+     "rotation_deg": -0.0261,
+     "shift_px": [
+      3.94,
+      -3.87
+     ],
+     "core_median_px": 13.25,
+     "core_p95_px": 24.97,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 1199,
+       "median_px": 13.34,
+       "radial_mean_px": 12.41
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 1564,
+       "median_px": 15.69,
+       "radial_mean_px": 15.07
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 1635,
+       "median_px": 7.69,
+       "radial_mean_px": -3.93
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 317,
+       "median_px": 26.37,
+       "radial_mean_px": -27.2
+      }
+     ],
+     "reach_r": 0.89,
+     "image_size": [
+      6000,
+      4000
+     ]
+    }
+   },
+   "4c_lightcraft_dng": {
+    "dng_version": "1.4.0.0",
+    "size": [
+     6000,
+     4000
+    ],
+    "default_crop_origin": [
+     0,
+     0
+    ],
+    "default_crop_size": [
+     6000,
+     4000
+    ],
+    "samples_per_pixel": 3,
+    "bits_per_sample": [
+     16,
+     16,
+     16
+    ],
+    "sample_format": "float",
+    "photometric": "LinearRaw",
+    "compression": "Deflate",
+    "baseline_exposure": 1.444904,
+    "opcode_lists": {
+     "OpcodeList3": [
+      "WarpRectilinear"
+     ]
+    },
+    "colour_and_profile_tags_present": [],
+    "embedded_xmp_with_develop_settings": false,
+    "other_images": []
+   },
+   "4c_lightcraft_app_dng": {
+    "dng_version": "1.4.0.0",
+    "size": [
+     6000,
+     4000
+    ],
+    "default_crop_origin": [
+     0,
+     0
+    ],
+    "default_crop_size": [
+     6000,
+     4000
+    ],
+    "samples_per_pixel": 3,
+    "bits_per_sample": [
+     16,
+     16,
+     16
+    ],
+    "sample_format": "float",
+    "photometric": "LinearRaw",
+    "compression": "Deflate",
+    "baseline_exposure": 1.444904,
+    "opcode_lists": {
+     "OpcodeList3": [
+      "WarpRectilinear"
+     ]
+    },
+    "colour_and_profile_tags_present": [],
+    "embedded_xmp_with_develop_settings": false,
+    "other_images": []
+   },
+   "vs_round1_renders": {
+    "cli_off": {
+     "same_size": true,
+     "mean_8bit": 0.0,
+     "max_8bit": 0.0,
+     "p99_8bit": 0.0,
+     "frac_pixels_gt_1_level": 0.0,
+     "identical": true
+    },
+    "ref_off": {
+     "same_size": true,
+     "mean_8bit": 0.0,
+     "max_8bit": 0.0,
+     "p99_8bit": 0.0,
+     "frac_pixels_gt_1_level": 0.0,
+     "identical": true
+    },
+    "ref_on": {
+     "same_size": true,
+     "mean_8bit": 0.0,
+     "max_8bit": 0.0,
+     "p99_8bit": 0.0,
+     "frac_pixels_gt_1_level": 0.0,
+     "identical": true
+    }
+   },
+   "4d": {
+    "alignment_lr_vs_lightcraft_similarity": {
+     "median_px": 0.44,
+     "p95_px": 1.51,
+     "n_points": 4713,
+     "scale": 1.00005,
+     "rotation_deg": 0.0276,
+     "shift_px": [
+      0.91,
+      -0.64
+     ],
+     "core_median_px": 0.43,
+     "core_p95_px": 1.27,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 1107,
+       "median_px": 0.46,
+       "radial_mean_px": 0.2
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 1549,
+       "median_px": 0.44,
+       "radial_mean_px": 0.14
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 1706,
+       "median_px": 0.4,
+       "radial_mean_px": -0.03
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 351,
+       "median_px": 0.5,
+       "radial_mean_px": -0.29
+      }
+     ],
+     "reach_r": 0.89,
+     "image_size": [
+      6000,
+      4000
+     ]
+    },
+    "alignment_lr_vs_lightcraft_after_radial_warp": {
+     "median_px": 0.35,
+     "p95_px": 1.29,
+     "n_points": 5057,
+     "scale": 1.00001,
+     "rotation_deg": 0.0005,
+     "shift_px": [
+      -0.04,
+      0.0
+     ],
+     "core_median_px": 0.35,
+     "core_p95_px": 1.09,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 1284,
+       "median_px": 0.34,
+       "radial_mean_px": 0.04
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 1662,
+       "median_px": 0.34,
+       "radial_mean_px": -0.02
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 1780,
+       "median_px": 0.36,
+       "radial_mean_px": 0.05
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 331,
+       "median_px": 0.51,
+       "radial_mean_px": -0.21
+      }
+     ],
+     "reach_r": 0.89,
+     "image_size": [
+      6000,
+      4000
+     ]
+    },
+    "tone_regions": {
+     "windows_frac": 0.0037,
+     "shadows_frac": 0.0855
+    },
+    "tone": {
+     "cli": {
+      "mid_log2": -3.688,
+      "shadow_log2": -4.959,
+      "window_log2": -0.907,
+      "window_clipped_frac": 0.077,
+      "window_local_sd_log2": 0.78,
+      "window_minus_mid": 2.781,
+      "shadow_minus_mid": -1.271
+     },
+     "lr": {
+      "mid_log2": -3.436,
+      "shadow_log2": -4.743,
+      "window_log2": -0.6,
+      "window_clipped_frac": 0.165,
+      "window_local_sd_log2": 0.738,
+      "window_minus_mid": 2.836,
+      "shadow_minus_mid": -1.308
+     },
+     "cli_m3": {
+      "mid_log2": -6.646,
+      "shadow_log2": -7.941,
+      "window_log2": -3.678,
+      "window_clipped_frac": 0.0,
+      "window_local_sd_log2": 0.853,
+      "window_minus_mid": 2.967,
+      "shadow_minus_mid": -1.296
+     },
+     "lr_m3": {
+      "mid_log2": -6.386,
+      "shadow_log2": -7.722,
+      "window_log2": -3.336,
+      "window_clipped_frac": 0.0,
+      "window_local_sd_log2": 0.828,
+      "window_minus_mid": 3.05,
+      "shadow_minus_mid": -1.337
+     }
+    },
+    "disagreement_minus3ev": {
+     "frac_gt_0.5EV": 0.0,
+     "frac_gt_1EV": 0.0,
+     "median_abs_EV": 0.0168
+    },
+    "frames_vs_reference": {
+     "DSC01160.ARW": {
+      "scale": 0.99991,
+      "rotation_deg": -0.0146,
+      "shift_px": [
+       0.73,
+       -1.29
+      ],
+      "edge_px_left_by_translation": 0.97
+     },
+     "DSC01161.ARW": {
+      "scale": 1.00009,
+      "rotation_deg": -0.0578,
+      "shift_px": [
+       1.05,
+       -1.01
+      ],
+      "edge_px_left_by_translation": 3.65
+     }
+    },
+    "magenta_in_windows_minus3ev": {
+     "window_pixels": 88117,
+     "lightcraft": {
+      "frac_magenta": 0.0285,
+      "lit_pixels": 88111.0
+     },
+     "lightroom": {
+      "frac_magenta": 0.0,
+      "lit_pixels": 88108.0
+     }
+    }
+   },
+   "app_vs_cli_render": {
+    "same_size": true,
+    "mean_8bit": 0.0,
+    "max_8bit": 0.0,
+    "p99_8bit": 0.0,
+    "frac_pixels_gt_1_level": 0.0,
+    "identical": true
+   }
+  },
+  "sony-01171-cocina": {
+   "frames": [
+    {
+     "file": "DSC01171.ARW",
+     "time": "2025:11:08 12:28:14",
+     "shutter_s": 0.02,
+     "f_number": 8.0,
+     "iso": 640,
+     "exposure_bias_ev": 0.0,
+     "focal_mm": 16.0,
+     "lens": "FE 16-35mm F4 ZA OSS",
+     "model": "ILCE-7M3"
+    },
+    {
+     "file": "DSC01172.ARW",
+     "time": "2025:11:08 12:28:14",
+     "shutter_s": 0.02,
+     "f_number": 8.0,
+     "iso": 160,
+     "exposure_bias_ev": -2.0,
+     "focal_mm": 16.0,
+     "lens": "FE 16-35mm F4 ZA OSS",
+     "model": "ILCE-7M3"
+    },
+    {
+     "file": "DSC01173.ARW",
+     "time": "2025:11:08 12:28:14",
+     "shutter_s": 0.02,
+     "f_number": 8.0,
+     "iso": 2500,
+     "exposure_bias_ev": 2.0,
+     "focal_mm": 16.0,
+     "lens": "FE 16-35mm F4 ZA OSS",
+     "model": "ILCE-7M3"
+    }
+   ],
+   "reference_frame": "DSC01171.ARW",
+   "merge_cli": {
+    "file": "cli2/DSC01171-HDR.dng",
+    "seconds": 16.6,
+    "ev_measured": [
+     0.0,
+     -1.979,
+     1.999
+    ],
+    "ev_exif": [
+     0.0,
+     -2.0,
+     1.966
+    ],
+    "alignment": [
+     {
+      "inliers": 0,
+      "model": "identity",
+      "rmsPx": 0.0
+     },
+     {
+      "inliers": 1204,
+      "model": "translation",
+      "rmsPx": 2.275498543674146
+     },
+     {
+      "inliers": 1194,
+      "model": "translation",
+      "rmsPx": 2.7712828826229217
+     }
+    ],
+    "size": [
+     6000,
+     4000
+    ],
+    "bytes": 87119908
+   },
+   "merge_app": {
+    "file": "DSC01171-HDR.dng",
+    "user_reported_merge_seconds": "~12 (approximate, given once for all four sets)",
+    "options": "Auto Align on, Deghost None",
+    "first_photo": "DSC01171",
+    "same_bytes_as_cli": false,
+    "order_check": "the app passed the frames as DSC01171, DSC01173, DSC01172; a CLI merge with that order and Deghost None (cli2/DSC01171-HDR-3.dng) is byte-identical to the app's file, while the CLI order DSC01171, DSC01172, DSC01173 gives a different file",
+    "extra_low": "the user first merged this set with Deghost Low by mistake: DSC01173-HDR-3.dng (kept, not measured)"
+   },
+   "lightroom_hdr": "DSC01173-HDR.dng",
+   "start_state": {
+    "ref": {
+     "wb": {
+      "mode": "asShot",
+      "scale": "kelvin",
+      "temp": 3932.0,
+      "tint": 7.0
+     },
+     "light_all_zero": true,
+     "lens_profile": true,
+     "crop_full": true,
+     "masks": 0,
+     "spots": 0
+    },
+    "cli": {
+     "wb": {
+      "mode": "asShot",
+      "scale": "kelvin",
+      "temp": 6502.0,
+      "tint": 10.0
+     },
+     "light_all_zero": true,
+     "lens_profile": true,
+     "crop_full": true,
+     "masks": 0,
+     "spots": 0
+    },
+    "app": {
+     "wb": {
+      "mode": "asShot",
+      "scale": "kelvin",
+      "temp": 6502.0,
+      "tint": 10.0
+     },
+     "light_all_zero": true,
+     "lens_profile": true,
+     "crop_full": true,
+     "masks": 0,
+     "spots": 0
+    },
+    "lr": {
+     "light_all_zero": true,
+     "lens_profile": false,
+     "crop_full": true,
+     "masks": 0,
+     "spots": 0
+    },
+    "lr_embedded_xmp_would_apply_without_sidecar": {
+     "light_all_zero": false,
+     "crop_full": false,
+     "masks": 2,
+     "spots": 0
+    }
+   },
+   "4a_correction_on_vs_off": {
+    "ref": {
+     "same_size": true,
+     "mean_8bit": 8.004,
+     "max_8bit": 255.0,
+     "p99_8bit": 72.409,
+     "frac_pixels_gt_1_level": 0.976,
+     "identical": false
+    },
+    "cli": {
+     "same_size": true,
+     "mean_8bit": 5.085,
+     "max_8bit": 255.0,
+     "p99_8bit": 54.829,
+     "frac_pixels_gt_1_level": 0.947,
+     "identical": false
+    },
+    "app": {
+     "same_size": true,
+     "mean_8bit": 5.123,
+     "max_8bit": 255.0,
+     "p99_8bit": 54.852,
+     "frac_pixels_gt_1_level": 0.949,
+     "identical": false
+    },
+    "lr": {
+     "same_size": true,
+     "mean_8bit": 0.0,
+     "max_8bit": 0.0,
+     "p99_8bit": 0.0,
+     "frac_pixels_gt_1_level": 0.0,
+     "identical": true
+    }
+   },
+   "4b_geometry": {
+    "reference_on_vs_cli_hdr_on": {
+     "median_px": 0.76,
+     "p95_px": 2.4,
+     "n_points": 7835,
+     "scale": 1.00102,
+     "rotation_deg": -0.0195,
+     "shift_px": [
+      -0.01,
+      -0.72
+     ],
+     "core_median_px": 0.74,
+     "core_p95_px": 2.1,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 801,
+       "median_px": 1.03,
+       "radial_mean_px": 0.04
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 2939,
+       "median_px": 0.7,
+       "radial_mean_px": 0.47
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 3779,
+       "median_px": 0.68,
+       "radial_mean_px": -0.0
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 314,
+       "median_px": 2.13,
+       "radial_mean_px": -1.92
+      },
+      {
+       "r": "0.90-1.00",
+       "n": 2,
+       "median_px": 5.32,
+       "radial_mean_px": -5.13
+      }
+     ],
+     "reach_r": 0.9,
+     "image_size": [
+      6000,
+      4000
+     ]
+    },
+    "reference_off_vs_cli_hdr_off_control": {
+     "median_px": 0.77,
+     "p95_px": 2.51,
+     "n_points": 7656,
+     "scale": 1.00102,
+     "rotation_deg": -0.0199,
+     "shift_px": [
+      -0.0,
+      -0.69
+     ],
+     "core_median_px": 0.75,
+     "core_p95_px": 2.11,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 787,
+       "median_px": 1.04,
+       "radial_mean_px": 0.03
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 2782,
+       "median_px": 0.73,
+       "radial_mean_px": 0.51
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 3759,
+       "median_px": 0.65,
+       "radial_mean_px": -0.02
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 328,
+       "median_px": 2.05,
+       "radial_mean_px": -1.81
+      }
+     ],
+     "reach_r": 0.89,
+     "image_size": [
+      6000,
+      4000
+     ]
+    },
+    "reference_on_vs_app_hdr_on": {
+     "median_px": 0.75,
+     "p95_px": 2.4,
+     "n_points": 7925,
+     "scale": 1.00104,
+     "rotation_deg": -0.0201,
+     "shift_px": [
+      -0.07,
+      -0.72
+     ],
+     "core_median_px": 0.74,
+     "core_p95_px": 2.1,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 815,
+       "median_px": 1.02,
+       "radial_mean_px": 0.01
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 2946,
+       "median_px": 0.71,
+       "radial_mean_px": 0.51
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 3839,
+       "median_px": 0.67,
+       "radial_mean_px": 0.0
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 323,
+       "median_px": 2.09,
+       "radial_mean_px": -2.09
+      },
+      {
+       "r": "0.90-1.00",
+       "n": 2,
+       "median_px": 5.27,
+       "radial_mean_px": -5.08
+      }
+     ],
+     "reach_r": 0.9,
+     "image_size": [
+      6000,
+      4000
+     ]
+    },
+    "reference_off_vs_app_hdr_off_control": {
+     "median_px": 0.77,
+     "p95_px": 2.49,
+     "n_points": 7600,
+     "scale": 1.00101,
+     "rotation_deg": -0.019,
+     "shift_px": [
+      -0.02,
+      -0.7
+     ],
+     "core_median_px": 0.75,
+     "core_p95_px": 2.08,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 777,
+       "median_px": 1.08,
+       "radial_mean_px": 0.04
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 2752,
+       "median_px": 0.74,
+       "radial_mean_px": 0.48
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 3744,
+       "median_px": 0.66,
+       "radial_mean_px": -0.0
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 327,
+       "median_px": 2.05,
+       "radial_mean_px": -1.85
+      }
+     ],
+     "reach_r": 0.89,
+     "image_size": [
+      6000,
+      4000
+     ]
+    },
+    "reference_on_vs_reference_off": {
+     "median_px": 12.13,
+     "p95_px": 23.86,
+     "n_points": 10810,
+     "scale": 1.00349,
+     "rotation_deg": 0.0804,
+     "shift_px": [
+      0.46,
+      -6.14
+     ],
+     "core_median_px": 12.13,
+     "core_p95_px": 23.86,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 1164,
+       "median_px": 13.36,
+       "radial_mean_px": 12.29
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 3959,
+       "median_px": 15.09,
+       "radial_mean_px": 14.48
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 5109,
+       "median_px": 7.24,
+       "radial_mean_px": -2.88
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 574,
+       "median_px": 27.08,
+       "radial_mean_px": -28.11
+      },
+      {
+       "r": "0.90-1.00",
+       "n": 4,
+       "median_px": 41.34,
+       "radial_mean_px": -41.77
+      }
+     ],
+     "reach_r": 0.91,
+     "image_size": [
+      6000,
+      4000
+     ]
+    }
+   },
+   "4c_lightroom_dng": {
+    "dng_version": "1.7.0.0",
+    "size": [
+     6000,
+     4000
+    ],
+    "default_crop_origin": [
+     0.0,
+     0.0
+    ],
+    "default_crop_size": [
+     6000.0,
+     4000.0
+    ],
+    "samples_per_pixel": 3,
+    "bits_per_sample": [
+     16,
+     16,
+     16
+    ],
+    "sample_format": "float",
+    "photometric": "LinearRaw",
+    "compression": "JPEG XL",
+    "baseline_exposure": 2.33,
+    "opcode_lists": "none",
+    "colour_and_profile_tags_present": [
+     "AsShotNeutral",
+     "CameraCalibration1",
+     "CameraCalibration2",
+     "ColorMatrix1",
+     "ColorMatrix2",
+     "ForwardMatrix1",
+     "ForwardMatrix2",
+     "ProfileEmbedPolicy",
+     "ProfileHueSatMapDims",
+     "ProfileLookTableDims",
+     "ProfileName"
+    ],
+    "embedded_xmp_with_develop_settings": true,
+    "other_images": [
+     {
+      "subfile_type": 4,
+      "size": [
+       6000,
+       4000
+      ]
+     },
+     {
+      "subfile_type": 1,
+      "size": [
+       1024,
+       683
+      ]
+     },
+     {
+      "subfile_type": 1,
+      "size": [
+       2048,
+       1365
+      ]
+     },
+     {
+      "subfile_type": 5,
+      "size": [
+       2048,
+       1365
+      ]
+     },
+     {
+      "subfile_type": 1,
+      "size": [
+       512,
+       341
+      ]
+     },
+     {
+      "subfile_type": 5,
+      "size": [
+       512,
+       341
+      ]
+     },
+     {
+      "subfile_type": 1,
+      "size": [
+       256,
+       171
+      ]
+     },
+     {
+      "subfile_type": 5,
+      "size": [
+       256,
+       171
+      ]
+     }
+    ]
+   },
+   "4c_lightroom_geometry": {
+    "vs_reference_uncorrected": {
+     "median_px": 0.73,
+     "p95_px": 2.39,
+     "n_points": 7994,
+     "scale": 1.00095,
+     "rotation_deg": -0.0186,
+     "shift_px": [
+      2.16,
+      -0.31
+     ],
+     "core_median_px": 0.72,
+     "core_p95_px": 2.09,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 801,
+       "median_px": 0.93,
+       "radial_mean_px": 0.14
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 2738,
+       "median_px": 0.75,
+       "radial_mean_px": 0.58
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 4045,
+       "median_px": 0.62,
+       "radial_mean_px": -0.0
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 410,
+       "median_px": 1.88,
+       "radial_mean_px": -1.78
+      }
+     ],
+     "reach_r": 0.89,
+     "image_size": [
+      6000,
+      4000
+     ]
+    },
+    "vs_reference_corrected": {
+     "median_px": 11.94,
+     "p95_px": 24.24,
+     "n_points": 8137,
+     "scale": 1.00384,
+     "rotation_deg": 0.0741,
+     "shift_px": [
+      3.64,
+      -5.82
+     ],
+     "core_median_px": 11.94,
+     "core_p95_px": 24.24,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 833,
+       "median_px": 13.42,
+       "radial_mean_px": 12.13
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 2905,
+       "median_px": 15.28,
+       "radial_mean_px": 14.54
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 3996,
+       "median_px": 7.28,
+       "radial_mean_px": -2.62
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 402,
+       "median_px": 29.68,
+       "radial_mean_px": -31.22
+      },
+      {
+       "r": "0.90-1.00",
+       "n": 1,
+       "median_px": 46.16,
+       "radial_mean_px": -46.15
+      }
+     ],
+     "reach_r": 0.9,
+     "image_size": [
+      6000,
+      4000
+     ]
+    },
+    "vs_lightcraft_hdr_on": {
+     "median_px": 11.17,
+     "p95_px": 23.24,
+     "n_points": 8562,
+     "scale": 1.00212,
+     "rotation_deg": 0.0868,
+     "shift_px": [
+      3.56,
+      -4.76
+     ],
+     "core_median_px": 11.16,
+     "core_p95_px": 23.07,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 880,
+       "median_px": 13.2,
+       "radial_mean_px": 12.17
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 3255,
+       "median_px": 14.29,
+       "radial_mean_px": 13.42
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 4065,
+       "median_px": 6.5,
+       "radial_mean_px": -3.37
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 362,
+       "median_px": 29.56,
+       "radial_mean_px": -30.62
+      }
+     ],
+     "reach_r": 0.9,
+     "image_size": [
+      6000,
+      4000
+     ]
+    }
+   },
+   "4c_lightcraft_dng": {
+    "dng_version": "1.4.0.0",
+    "size": [
+     6000,
+     4000
+    ],
+    "default_crop_origin": [
+     0,
+     0
+    ],
+    "default_crop_size": [
+     6000,
+     4000
+    ],
+    "samples_per_pixel": 3,
+    "bits_per_sample": [
+     16,
+     16,
+     16
+    ],
+    "sample_format": "float",
+    "photometric": "LinearRaw",
+    "compression": "Deflate",
+    "baseline_exposure": 2.088418,
+    "opcode_lists": {
+     "OpcodeList3": [
+      "WarpRectilinear"
+     ]
+    },
+    "colour_and_profile_tags_present": [],
+    "embedded_xmp_with_develop_settings": false,
+    "other_images": []
+   },
+   "4c_lightcraft_app_dng": {
+    "dng_version": "1.4.0.0",
+    "size": [
+     6000,
+     4000
+    ],
+    "default_crop_origin": [
+     0,
+     0
+    ],
+    "default_crop_size": [
+     6000,
+     4000
+    ],
+    "samples_per_pixel": 3,
+    "bits_per_sample": [
+     16,
+     16,
+     16
+    ],
+    "sample_format": "float",
+    "photometric": "LinearRaw",
+    "compression": "Deflate",
+    "baseline_exposure": 2.087973,
+    "opcode_lists": {
+     "OpcodeList3": [
+      "WarpRectilinear"
+     ]
+    },
+    "colour_and_profile_tags_present": [],
+    "embedded_xmp_with_develop_settings": false,
+    "other_images": []
+   },
+   "vs_round1_renders": {
+    "cli_off": {
+     "same_size": true,
+     "mean_8bit": 0.0,
+     "max_8bit": 0.0,
+     "p99_8bit": 0.0,
+     "frac_pixels_gt_1_level": 0.0,
+     "identical": true
+    },
+    "ref_off": {
+     "same_size": true,
+     "mean_8bit": 0.0,
+     "max_8bit": 0.0,
+     "p99_8bit": 0.0,
+     "frac_pixels_gt_1_level": 0.0,
+     "identical": true
+    },
+    "ref_on": {
+     "same_size": true,
+     "mean_8bit": 0.0,
+     "max_8bit": 0.0,
+     "p99_8bit": 0.0,
+     "frac_pixels_gt_1_level": 0.0,
+     "identical": true
+    }
+   },
+   "4d": {
+    "alignment_lr_vs_lightcraft_similarity": {
+     "median_px": 0.29,
+     "p95_px": 1.14,
+     "n_points": 9097,
+     "scale": 0.9999,
+     "rotation_deg": 0.0002,
+     "shift_px": [
+      2.11,
+      0.41
+     ],
+     "core_median_px": 0.29,
+     "core_p95_px": 1.01,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 932,
+       "median_px": 0.35,
+       "radial_mean_px": 0.07
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 3412,
+       "median_px": 0.27,
+       "radial_mean_px": 0.02
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 4355,
+       "median_px": 0.28,
+       "radial_mean_px": -0.02
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 398,
+       "median_px": 0.55,
+       "radial_mean_px": -0.05
+      }
+     ],
+     "reach_r": 0.88,
+     "image_size": [
+      6000,
+      4000
+     ]
+    },
+    "alignment_lr_vs_lightcraft_after_radial_warp": {
+     "median_px": 0.27,
+     "p95_px": 1.05,
+     "n_points": 9607,
+     "scale": 0.99999,
+     "rotation_deg": -0.0031,
+     "shift_px": [
+      -0.07,
+      0.09
+     ],
+     "core_median_px": 0.27,
+     "core_p95_px": 0.97,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 985,
+       "median_px": 0.32,
+       "radial_mean_px": 0.04
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 3644,
+       "median_px": 0.25,
+       "radial_mean_px": 0.0
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 4552,
+       "median_px": 0.27,
+       "radial_mean_px": -0.0
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 426,
+       "median_px": 0.43,
+       "radial_mean_px": -0.12
+      }
+     ],
+     "reach_r": 0.88,
+     "image_size": [
+      6000,
+      4000
+     ]
+    },
+    "tone_regions": {
+     "windows_frac": 0.0147,
+     "shadows_frac": 0.0855
+    },
+    "tone": {
+     "cli": {
+      "mid_log2": -4.054,
+      "shadow_log2": -5.939,
+      "window_log2": -0.097,
+      "window_clipped_frac": 0.599,
+      "window_local_sd_log2": 0.163,
+      "window_minus_mid": 3.957,
+      "shadow_minus_mid": -1.885
+     },
+     "lr": {
+      "mid_log2": -3.952,
+      "shadow_log2": -5.833,
+      "window_log2": -0.003,
+      "window_clipped_frac": 0.806,
+      "window_local_sd_log2": 0.113,
+      "window_minus_mid": 3.949,
+      "shadow_minus_mid": -1.881
+     },
+     "cli_m3": {
+      "mid_log2": -7.021,
+      "shadow_log2": -8.93,
+      "window_log2": -2.777,
+      "window_clipped_frac": 0.017,
+      "window_local_sd_log2": 0.509,
+      "window_minus_mid": 4.244,
+      "shadow_minus_mid": -1.909
+     },
+     "lr_m3": {
+      "mid_log2": -6.917,
+      "shadow_log2": -8.821,
+      "window_log2": -2.552,
+      "window_clipped_frac": 0.028,
+      "window_local_sd_log2": 0.466,
+      "window_minus_mid": 4.365,
+      "shadow_minus_mid": -1.904
+     }
+    },
+    "disagreement_minus3ev": {
+     "frac_gt_0.5EV": 0.0001,
+     "frac_gt_1EV": 0.0,
+     "median_abs_EV": 0.0083
+    },
+    "frames_vs_reference": {
+     "DSC01172.ARW": {
+      "scale": 1.00056,
+      "rotation_deg": -0.0197,
+      "shift_px": [
+       2.23,
+       -0.1
+      ],
+      "edge_px_left_by_translation": 2.38
+     },
+     "DSC01173.ARW": {
+      "scale": 1.00152,
+      "rotation_deg": -0.0249,
+      "shift_px": [
+       2.63,
+       -0.97
+      ],
+      "edge_px_left_by_translation": 5.71
+     }
+    },
+    "magenta_in_windows_minus3ev": {
+     "window_pixels": 351943,
+     "lightcraft": {
+      "frac_magenta": 0.04006,
+      "lit_pixels": 351918.0
+     },
+     "lightroom": {
+      "frac_magenta": 0.00036,
+      "lit_pixels": 351914.0
+     }
+    }
+   },
+   "app_vs_cli_render": {
+    "same_size": true,
+    "mean_8bit": 0.112,
+    "max_8bit": 102.0661,
+    "p99_8bit": 0.6148,
+    "frac_pixels_gt_1_level": 0.0058,
+    "identical": false
+   }
+  },
+  "dji-0107-edificios": {
+   "frames": [
+    {
+     "file": "DJI_0107.DNG",
+     "time": "2025:11:08 13:08:04",
+     "shutter_s": 0.0008,
+     "f_number": 2.8,
+     "iso": 100,
+     "exposure_bias_ev": -0.7,
+     "focal_mm": 4.5,
+     "lens": null,
+     "model": "FC3170"
+    },
+    {
+     "file": "DJI_0108.DNG",
+     "time": "2025:11:08 13:08:05",
+     "shutter_s": 0.0005,
+     "f_number": 2.8,
+     "iso": 100,
+     "exposure_bias_ev": -1.3,
+     "focal_mm": 4.5,
+     "lens": null,
+     "model": "FC3170"
+    },
+    {
+     "file": "DJI_0109.DNG",
+     "time": "2025:11:08 13:08:05",
+     "shutter_s": 0.00125,
+     "f_number": 2.8,
+     "iso": 100,
+     "exposure_bias_ev": 0.0,
+     "focal_mm": 4.5,
+     "lens": null,
+     "model": "FC3170"
+    }
+   ],
+   "reference_frame": "DJI_0107.DNG",
+   "merge_cli": {
+    "file": "cli2/DJI_0107-HDR.dng",
+    "seconds": 14.3,
+    "ev_measured": [
+     0.0,
+     -0.639,
+     0.684
+    ],
+    "ev_exif": [
+     0.0,
+     -0.678,
+     0.644
+    ],
+    "alignment": [
+     {
+      "inliers": 0,
+      "model": "identity",
+      "rmsPx": 0.0
+     },
+     {
+      "inliers": 1351,
+      "model": "translation",
+      "rmsPx": 0.5474566817146446
+     },
+     {
+      "inliers": 1378,
+      "model": "translation",
+      "rmsPx": 0.5560631070880157
+     }
+    ],
+    "size": [
+     4000,
+     3000
+    ],
+    "bytes": 41806622
+   },
+   "merge_app": {
+    "file": "DJI_0109-HDR-3.dng",
+    "user_reported_merge_seconds": "~12 (approximate, given once for all four sets)",
+    "options": "Auto Align on, Deghost None",
+    "first_photo": "DJI_0109",
+    "same_bytes_as_cli": false
+   },
+   "lightroom_hdr": "DJI_0109-HDR.dng",
+   "start_state": {
+    "ref": {
+     "wb": {
+      "mode": "asShot",
+      "scale": "kelvin",
+      "temp": 5534.0,
+      "tint": 20.0
+     },
+     "light_all_zero": true,
+     "lens_profile": true,
+     "crop_full": true,
+     "masks": 0,
+     "spots": 0
+    },
+    "cli": {
+     "wb": {
+      "mode": "asShot",
+      "scale": "kelvin",
+      "temp": 5534.0,
+      "tint": 20.0
+     },
+     "light_all_zero": true,
+     "lens_profile": true,
+     "crop_full": true,
+     "masks": 0,
+     "spots": 0
+    },
+    "app": {
+     "wb": {
+      "mode": "asShot",
+      "scale": "kelvin",
+      "temp": 5534.0,
+      "tint": 20.0
+     },
+     "light_all_zero": true,
+     "lens_profile": true,
+     "crop_full": true,
+     "masks": 0,
+     "spots": 0
+    },
+    "lr": {
+     "light_all_zero": true,
+     "lens_profile": false,
+     "crop_full": true,
+     "masks": 0,
+     "spots": 0
+    },
+    "lr_embedded_xmp_would_apply_without_sidecar": {
+     "light_all_zero": false,
+     "crop_full": false,
+     "masks": 0,
+     "spots": 0
+    }
+   },
+   "4a_correction_on_vs_off": {
+    "ref": {
+     "same_size": true,
+     "mean_8bit": 9.111,
+     "max_8bit": 255.0,
+     "p99_8bit": 83.342,
+     "frac_pixels_gt_1_level": 0.951,
+     "identical": false
+    },
+    "cli": {
+     "same_size": true,
+     "mean_8bit": 7.863,
+     "max_8bit": 255.0,
+     "p99_8bit": 81.658,
+     "frac_pixels_gt_1_level": 0.907,
+     "identical": false
+    },
+    "app": {
+     "same_size": true,
+     "mean_8bit": 7.859,
+     "max_8bit": 255.0,
+     "p99_8bit": 81.646,
+     "frac_pixels_gt_1_level": 0.907,
+     "identical": false
+    },
+    "lr": {
+     "same_size": true,
+     "mean_8bit": 0.0,
+     "max_8bit": 0.0,
+     "p99_8bit": 0.0,
+     "frac_pixels_gt_1_level": 0.0,
+     "identical": true
+    }
+   },
+   "4b_geometry": {
+    "reference_on_vs_cli_hdr_on": {
+     "median_px": 0.15,
+     "p95_px": 0.62,
+     "n_points": 15187,
+     "scale": 1.0,
+     "rotation_deg": -0.0012,
+     "shift_px": [
+      -0.01,
+      0.01
+     ],
+     "core_median_px": 0.15,
+     "core_p95_px": 0.59,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 2880,
+       "median_px": 0.14,
+       "radial_mean_px": -0.02
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 4893,
+       "median_px": 0.14,
+       "radial_mean_px": 0.01
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 5724,
+       "median_px": 0.15,
+       "radial_mean_px": -0.01
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 1560,
+       "median_px": 0.19,
+       "radial_mean_px": 0.0
+      },
+      {
+       "r": "0.90-1.00",
+       "n": 130,
+       "median_px": 0.25,
+       "radial_mean_px": 0.06
+      }
+     ],
+     "reach_r": 0.99,
+     "image_size": [
+      4000,
+      3000
+     ]
+    },
+    "reference_off_vs_cli_hdr_off_control": {
+     "median_px": 0.15,
+     "p95_px": 0.63,
+     "n_points": 14880,
+     "scale": 1.00001,
+     "rotation_deg": -0.0014,
+     "shift_px": [
+      -0.0,
+      -0.01
+     ],
+     "core_median_px": 0.15,
+     "core_p95_px": 0.6,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 2851,
+       "median_px": 0.14,
+       "radial_mean_px": -0.02
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 4688,
+       "median_px": 0.14,
+       "radial_mean_px": 0.0
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 5733,
+       "median_px": 0.15,
+       "radial_mean_px": -0.01
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 1511,
+       "median_px": 0.18,
+       "radial_mean_px": 0.01
+      },
+      {
+       "r": "0.90-1.00",
+       "n": 97,
+       "median_px": 0.22,
+       "radial_mean_px": 0.06
+      }
+     ],
+     "reach_r": 0.98,
+     "image_size": [
+      4000,
+      3000
+     ]
+    },
+    "reference_on_vs_app_hdr_on": {
+     "median_px": 0.15,
+     "p95_px": 0.62,
+     "n_points": 15162,
+     "scale": 1.00001,
+     "rotation_deg": -0.0008,
+     "shift_px": [
+      0.0,
+      0.0
+     ],
+     "core_median_px": 0.15,
+     "core_p95_px": 0.59,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 2857,
+       "median_px": 0.14,
+       "radial_mean_px": -0.01
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 4903,
+       "median_px": 0.14,
+       "radial_mean_px": 0.01
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 5707,
+       "median_px": 0.15,
+       "radial_mean_px": -0.0
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 1566,
+       "median_px": 0.19,
+       "radial_mean_px": -0.01
+      },
+      {
+       "r": "0.90-1.00",
+       "n": 129,
+       "median_px": 0.24,
+       "radial_mean_px": 0.06
+      }
+     ],
+     "reach_r": 0.99,
+     "image_size": [
+      4000,
+      3000
+     ]
+    },
+    "reference_off_vs_app_hdr_off_control": {
+     "median_px": 0.15,
+     "p95_px": 0.63,
+     "n_points": 14897,
+     "scale": 1.00001,
+     "rotation_deg": -0.0014,
+     "shift_px": [
+      -0.0,
+      -0.01
+     ],
+     "core_median_px": 0.15,
+     "core_p95_px": 0.6,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 2863,
+       "median_px": 0.14,
+       "radial_mean_px": -0.02
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 4678,
+       "median_px": 0.14,
+       "radial_mean_px": 0.0
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 5746,
+       "median_px": 0.15,
+       "radial_mean_px": -0.01
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 1512,
+       "median_px": 0.18,
+       "radial_mean_px": 0.01
+      },
+      {
+       "r": "0.90-1.00",
+       "n": 98,
+       "median_px": 0.22,
+       "radial_mean_px": 0.06
+      }
+     ],
+     "reach_r": 0.98,
+     "image_size": [
+      4000,
+      3000
+     ]
+    },
+    "reference_on_vs_reference_off": {
+     "median_px": 6.04,
+     "p95_px": 20.25,
+     "n_points": 13729,
+     "scale": 1.00681,
+     "rotation_deg": -0.0047,
+     "shift_px": [
+      0.18,
+      -0.97
+     ],
+     "core_median_px": 5.9,
+     "core_p95_px": 17.87,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 2647,
+       "median_px": 2.12,
+       "radial_mean_px": -1.94
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 4590,
+       "median_px": 4.32,
+       "radial_mean_px": 4.35
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 5273,
+       "median_px": 8.62,
+       "radial_mean_px": 4.68
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 1218,
+       "median_px": 20.95,
+       "radial_mean_px": -22.0
+      },
+      {
+       "r": "0.90-1.00",
+       "n": 1,
+       "median_px": 23.56,
+       "radial_mean_px": 10.47
+      }
+     ],
+     "reach_r": 0.9,
+     "image_size": [
+      4000,
+      3000
+     ]
+    }
+   },
+   "4c_lightroom_dng": {
+    "dng_version": "1.7.0.0",
+    "size": [
+     4000,
+     3000
+    ],
+    "default_crop_origin": [
+     0.0,
+     0.0
+    ],
+    "default_crop_size": [
+     4000.0,
+     3000.0
+    ],
+    "samples_per_pixel": 3,
+    "bits_per_sample": [
+     16,
+     16,
+     16
+    ],
+    "sample_format": "float",
+    "photometric": "LinearRaw",
+    "compression": "JPEG XL",
+    "baseline_exposure": 0.66,
+    "opcode_lists": "none",
+    "colour_and_profile_tags_present": [
+     "AsShotNeutral",
+     "ColorMatrix1",
+     "ColorMatrix2",
+     "ProfileEmbedPolicy",
+     "ProfileHueSatMapDims",
+     "ProfileName",
+     "ProfileToneCurve"
+    ],
+    "embedded_xmp_with_develop_settings": true,
+    "other_images": [
+     {
+      "subfile_type": 4,
+      "size": [
+       4000,
+       3000
+      ]
+     },
+     {
+      "subfile_type": 1,
+      "size": [
+       1024,
+       768
+      ]
+     },
+     {
+      "subfile_type": 1,
+      "size": [
+       2048,
+       1536
+      ]
+     },
+     {
+      "subfile_type": 5,
+      "size": [
+       2048,
+       1536
+      ]
+     },
+     {
+      "subfile_type": 1,
+      "size": [
+       512,
+       384
+      ]
+     },
+     {
+      "subfile_type": 5,
+      "size": [
+       512,
+       384
+      ]
+     },
+     {
+      "subfile_type": 1,
+      "size": [
+       256,
+       192
+      ]
+     },
+     {
+      "subfile_type": 5,
+      "size": [
+       256,
+       192
+      ]
+     }
+    ]
+   },
+   "4c_lightroom_geometry": {
+    "vs_reference_uncorrected": {
+     "median_px": 6.02,
+     "p95_px": 20.54,
+     "n_points": 11336,
+     "scale": 0.99315,
+     "rotation_deg": 0.0032,
+     "shift_px": [
+      -0.16,
+      0.98
+     ],
+     "core_median_px": 5.85,
+     "core_p95_px": 17.42,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 2217,
+       "median_px": 2.11,
+       "radial_mean_px": 1.86
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 3756,
+       "median_px": 4.29,
+       "radial_mean_px": -4.31
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 4523,
+       "median_px": 8.69,
+       "radial_mean_px": -4.14
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 839,
+       "median_px": 22.51,
+       "radial_mean_px": 23.43
+      },
+      {
+       "r": "0.90-1.00",
+       "n": 1,
+       "median_px": 20.16,
+       "radial_mean_px": 11.88
+      }
+     ],
+     "reach_r": 0.94,
+     "image_size": [
+      4000,
+      3000
+     ]
+    },
+    "vs_reference_corrected": {
+     "median_px": 0.26,
+     "p95_px": 0.96,
+     "n_points": 13013,
+     "scale": 0.99996,
+     "rotation_deg": -0.0024,
+     "shift_px": [
+      -0.03,
+      0.0
+     ],
+     "core_median_px": 0.25,
+     "core_p95_px": 0.86,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 2430,
+       "median_px": 0.25,
+       "radial_mean_px": -0.01
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 4201,
+       "median_px": 0.25,
+       "radial_mean_px": 0.01
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 4947,
+       "median_px": 0.26,
+       "radial_mean_px": 0.01
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 1332,
+       "median_px": 0.29,
+       "radial_mean_px": -0.06
+      },
+      {
+       "r": "0.90-1.00",
+       "n": 103,
+       "median_px": 0.33,
+       "radial_mean_px": -0.0
+      }
+     ],
+     "reach_r": 0.99,
+     "image_size": [
+      4000,
+      3000
+     ]
+    },
+    "vs_lightcraft_hdr_on": {
+     "median_px": 0.18,
+     "p95_px": 0.62,
+     "n_points": 15132,
+     "scale": 0.99995,
+     "rotation_deg": -0.0007,
+     "shift_px": [
+      -0.02,
+      0.02
+     ],
+     "core_median_px": 0.18,
+     "core_p95_px": 0.59,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 2790,
+       "median_px": 0.19,
+       "radial_mean_px": -0.01
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 4851,
+       "median_px": 0.19,
+       "radial_mean_px": 0.01
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 5701,
+       "median_px": 0.18,
+       "radial_mean_px": 0.02
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 1634,
+       "median_px": 0.19,
+       "radial_mean_px": -0.06
+      },
+      {
+       "r": "0.90-1.00",
+       "n": 156,
+       "median_px": 0.18,
+       "radial_mean_px": -0.1
+      }
+     ],
+     "reach_r": 0.99,
+     "image_size": [
+      4000,
+      3000
+     ]
+    }
+   },
+   "4c_lightcraft_dng": {
+    "dng_version": "1.4.0.0",
+    "size": [
+     4000,
+     3000
+    ],
+    "default_crop_origin": [
+     0,
+     0
+    ],
+    "default_crop_size": [
+     4000,
+     3000
+    ],
+    "samples_per_pixel": 3,
+    "bits_per_sample": [
+     16,
+     16,
+     16
+    ],
+    "sample_format": "float",
+    "photometric": "LinearRaw",
+    "compression": "Deflate",
+    "baseline_exposure": 1.008756,
+    "opcode_lists": {
+     "OpcodeList3": [
+      "WarpRectilinear"
+     ]
+    },
+    "colour_and_profile_tags_present": [
+     "AsShotNeutral",
+     "ColorMatrix1",
+     "ColorMatrix2",
+     "ProfileHueSatMapDims",
+     "ProfileToneCurve"
+    ],
+    "embedded_xmp_with_develop_settings": false,
+    "other_images": []
+   },
+   "4c_lightcraft_app_dng": {
+    "dng_version": "1.4.0.0",
+    "size": [
+     4000,
+     3000
+    ],
+    "default_crop_origin": [
+     0,
+     0
+    ],
+    "default_crop_size": [
+     4000,
+     3000
+    ],
+    "samples_per_pixel": 3,
+    "bits_per_sample": [
+     16,
+     16,
+     16
+    ],
+    "sample_format": "float",
+    "photometric": "LinearRaw",
+    "compression": "Deflate",
+    "baseline_exposure": 1.008756,
+    "opcode_lists": {
+     "OpcodeList3": [
+      "WarpRectilinear"
+     ]
+    },
+    "colour_and_profile_tags_present": [
+     "AsShotNeutral",
+     "ColorMatrix1",
+     "ColorMatrix2",
+     "ProfileHueSatMapDims",
+     "ProfileToneCurve"
+    ],
+    "embedded_xmp_with_develop_settings": false,
+    "other_images": []
+   },
+   "vs_round1_renders": {
+    "cli_off": {
+     "same_size": true,
+     "mean_8bit": 0.0,
+     "max_8bit": 0.0,
+     "p99_8bit": 0.0,
+     "frac_pixels_gt_1_level": 0.0,
+     "identical": true
+    },
+    "ref_off": {
+     "same_size": true,
+     "mean_8bit": 0.0,
+     "max_8bit": 0.0,
+     "p99_8bit": 0.0,
+     "frac_pixels_gt_1_level": 0.0,
+     "identical": true
+    },
+    "ref_on": {
+     "same_size": true,
+     "mean_8bit": 0.0,
+     "max_8bit": 0.0,
+     "p99_8bit": 0.0,
+     "frac_pixels_gt_1_level": 0.0,
+     "identical": true
+    }
+   },
+   "4d": {
+    "alignment_lr_vs_lightcraft_similarity": {
+     "median_px": 5.97,
+     "p95_px": 20.25,
+     "n_points": 12958,
+     "scale": 0.99318,
+     "rotation_deg": 0.0046,
+     "shift_px": [
+      -0.21,
+      1.01
+     ],
+     "core_median_px": 5.82,
+     "core_p95_px": 17.21,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 2549,
+       "median_px": 2.13,
+       "radial_mean_px": 1.9
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 4249,
+       "median_px": 4.37,
+       "radial_mean_px": -4.34
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 5215,
+       "median_px": 8.64,
+       "radial_mean_px": -4.1
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 943,
+       "median_px": 22.81,
+       "radial_mean_px": 23.75
+      },
+      {
+       "r": "0.90-1.00",
+       "n": 2,
+       "median_px": 20.0,
+       "radial_mean_px": 2.32
+      }
+     ],
+     "reach_r": 0.94,
+     "image_size": [
+      4000,
+      3000
+     ]
+    },
+    "alignment_lr_vs_lightcraft_after_radial_warp": {
+     "median_px": 0.21,
+     "p95_px": 0.75,
+     "n_points": 13740,
+     "scale": 1.00003,
+     "rotation_deg": -0.0013,
+     "shift_px": [
+      0.01,
+      0.01
+     ],
+     "core_median_px": 0.21,
+     "core_p95_px": 0.69,
+     "by_radius": [
+      {
+       "r": "0.00-0.25",
+       "n": 2614,
+       "median_px": 0.2,
+       "radial_mean_px": 0.02
+      },
+      {
+       "r": "0.25-0.50",
+       "n": 4537,
+       "median_px": 0.22,
+       "radial_mean_px": 0.04
+      },
+      {
+       "r": "0.50-0.75",
+       "n": 5419,
+       "median_px": 0.2,
+       "radial_mean_px": 0.01
+      },
+      {
+       "r": "0.75-0.90",
+       "n": 1136,
+       "median_px": 0.33,
+       "radial_mean_px": 0.07
+      },
+      {
+       "r": "0.90-1.00",
+       "n": 34,
+       "median_px": 5.06,
+       "radial_mean_px": -5.73
+      }
+     ],
+     "reach_r": 0.95,
+     "image_size": [
+      4000,
+      3000
+     ]
+    },
+    "tone_regions": {
+     "windows_frac": 0.0,
+     "shadows_frac": 0.0865
+    },
+    "tone": {
+     "cli": {
+      "mid_log2": -2.754,
+      "shadow_log2": -7.292,
+      "window_minus_mid": null,
+      "shadow_minus_mid": -4.538
+     },
+     "lr": {
+      "mid_log2": -2.722,
+      "shadow_log2": -7.216,
+      "window_minus_mid": null,
+      "shadow_minus_mid": -4.494
+     },
+     "cli_m3": {
+      "mid_log2": -7.625,
+      "shadow_log2": -10.312,
+      "window_minus_mid": null,
+      "shadow_minus_mid": -2.686
+     },
+     "lr_m3": {
+      "mid_log2": -7.603,
+      "shadow_log2": -10.244,
+      "window_minus_mid": null,
+      "shadow_minus_mid": -2.641
+     }
+    },
+    "disagreement_minus3ev": {
+     "frac_gt_0.5EV": 0.0003,
+     "frac_gt_1EV": 0.0,
+     "median_abs_EV": 0.0077
+    },
+    "frames_vs_reference": {
+     "DJI_0108.DNG": {
+      "scale": 1.0,
+      "rotation_deg": -0.0016,
+      "shift_px": [
+       -0.02,
+       -0.04
+      ],
+      "edge_px_left_by_translation": 0.07
+     },
+     "DJI_0109.DNG": {
+      "scale": 1.0,
+      "rotation_deg": -0.0011,
+      "shift_px": [
+       -0.09,
+       -0.14
+      ],
+      "edge_px_left_by_translation": 0.05
+     }
+    },
+    "magenta_in_windows_minus3ev": {
+     "window_pixels": 0,
+     "lightcraft": {
+      "frac_magenta": 0.0,
+      "lit_pixels": 0.0
+     },
+     "lightroom": {
+      "frac_magenta": 0.0,
+      "lit_pixels": 0.0
+     }
+    }
+   },
+   "app_vs_cli_render": {
+    "same_size": true,
+    "mean_8bit": 0.011,
+    "max_8bit": 3.5798,
+    "p99_8bit": 0.1012,
+    "frac_pixels_gt_1_level": 0.0,
+    "identical": false
+   }
+  }
+ }
+}
