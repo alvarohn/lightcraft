@@ -142,10 +142,18 @@ fn dng_colour(tags: &ColorData, t: &CameraTransform, look: Option<&CameraLook>) 
     let forward = bradford(D65, D50).mul(&REC2020.to_xyz()).mul(&m);
     let wb = t.wb.map(f64::from);
     let neutral = wb.map(|w| wb.iter().cloned().fold(f64::MAX, f64::min) / w);
-    let camera_to_xyz = bradford(D50, t.white_xy).mul(&forward).mul(&Mat3::diag(1.0 / neutral[0], 1.0 / neutral[1], 1.0 / neutral[2]));
+    // The colour matrix is the source's own white-balance model at its as-shot white (the generic one for a raw with
+    // no matrices), so the DNG declares the source's as-shot white and a white-balance edit gives the multipliers it
+    // gives the source. One built from `forward` put the as-shot white off the locus whenever the look's matrix tints
+    // white, as fitted looks do: ARW merges opened at about 7000 K / +115 for 4800 K / +8, and any white-balance edit
+    // turned them green. `forward` is only used with the neutral, so the render at As Shot is the same either way.
+    let color_matrix = lightcraft_raw::color::xyz_to_camera(tags, t.white_xy);
+    if !color_matrix.0.iter().flatten().all(|v| v.is_finite()) {
+        return None;
+    }
     Some(ColorData {
         illuminant: [21, 0],
-        color_matrix: [Some(camera_to_xyz.inverse()?), None],
+        color_matrix: [Some(color_matrix), None],
         forward_matrix: [Some(forward), None],
         camera_calibration: [None, None],
         analog_balance: None,
@@ -2162,6 +2170,29 @@ mod tests {
                 }
                 None => assert!(tone.is_none()),
             }
+        }
+    }
+
+    /// The merged DNG declares the source's as-shot white and white-balance model, also when the look's matrix doesn't
+    /// keep white neutral, as fitted looks often don't (real ARW merges: As Shot about 7000 K / +115 for the source's
+    /// 4800 K / +8, and any white-balance edit turned them green).
+    #[test]
+    fn dng_colour_declares_the_sources_white_balance() {
+        use lightcraft_raw::color::{as_shot_white_of, camera_transform_of, wb_multipliers};
+        let tags = ColorData::default();
+        let xy = Xy::new(0.36, 0.37);
+        let t = camera_transform_of(&tags, xy);
+        let mut look = dro_test_look(&std::array::from_fn(|i| 0.005 * 1.2f32.powi(i as i32)), &|x| 0.95 * x / (x + 0.1));
+        look.matrix = Mat3([[1.75, -0.4, -0.2], [-0.2, 1.35, -0.2], [0.05, -0.3, 1.3]]);
+        let tint = look.matrix.apply([1.0; 3]);
+        assert!((tint[0] - tint[1]).abs() > 0.1, "a look that tints white: {tint:?}");
+        let dng = dng_colour(&tags, &t, Some(&look)).unwrap();
+        let back = as_shot_white_of(&dng, None);
+        assert!((back.x - xy.x).abs() < 1e-6 && (back.y - xy.y).abs() < 1e-6, "as shot {back:?}, the source's {xy:?}");
+        // at other whites (a white-balance edit) the same multipliers as the source
+        for w in [Xy::new(0.3127, 0.329), Xy::new(0.4476, 0.4074), Xy::new(0.28, 0.29)] {
+            let (a, b) = (wb_multipliers(&tags, w), wb_multipliers(&dng, w));
+            assert!(a.iter().zip(b).all(|(a, b)| (a - b).abs() < 1e-6 * a), "{w:?}: {a:?} vs {b:?}");
         }
     }
 
