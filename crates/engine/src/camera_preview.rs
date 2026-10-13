@@ -118,8 +118,23 @@ pub(crate) fn starting_colour_tags(raw: &mut RawImage, bytes: &[u8]) -> Option<C
     if lightcraft_raw::color::has_matrix(&raw.color) {
         return None;
     }
+    let model = wb_model(raw);
     let (_, t, look) = starting_colour(raw, bytes);
-    dng_colour(&raw.color, &t, look.as_ref())
+    dng_colour(&raw.color, &model, &t, look.as_ref())
+}
+
+/// The colour tags whose matrices the app shows and edits a raw's white balance through, as `files::WbScaleOf`
+/// decides: the camera's measured matrices (`lightcraft_raw::spectral`) when the file's look is fitted to its JPEG and
+/// the camera is covered, even when the fitted look gives the colour; else the file's own tags (none: the generic
+/// model).
+fn wb_model(raw: &RawImage) -> ColorData {
+    let mut c = ColorData { profile: Default::default(), ..raw.color.clone() };
+    if file_local_look(raw.format)
+        && let Some(camera) = raw.metadata.model.as_deref().and_then(|m| lightcraft_raw::spectral::find(raw.metadata.make.as_deref(), m))
+    {
+        camera.fill(&mut c);
+    }
+    c
 }
 
 /// DNG tags that render white-balanced camera RGB at its as-shot white as `t` with `look` on top does: one forward
@@ -129,7 +144,7 @@ pub(crate) fn starting_colour_tags(raw: &mut RawImage, bytes: &[u8]) -> Option<C
 /// CC0 CR2s (EOS 550D, 40D) an HDR merge of three copies renders within mean CIE76 ΔE 1.07 and 0.47 of the photo
 /// (1.47 and 0.66 without the table; 26 and 23 with no colour tags at all).
 /// `None` when the white balance or the matrix can't give tags.
-fn dng_colour(tags: &ColorData, t: &CameraTransform, look: Option<&CameraLook>) -> Option<ColorData> {
+fn dng_colour(tags: &ColorData, wb_model: &ColorData, t: &CameraTransform, look: Option<&CameraLook>) -> Option<ColorData> {
     let m = look.map_or(t.matrix, |l| l.matrix.mul(&t.matrix));
     // the DNG model renders the camera's white at unit brightness: what a look does to white's brightness goes
     // into the baseline exposure
@@ -142,19 +157,26 @@ fn dng_colour(tags: &ColorData, t: &CameraTransform, look: Option<&CameraLook>) 
     let forward = bradford(D65, D50).mul(&REC2020.to_xyz()).mul(&m);
     let wb = t.wb.map(f64::from);
     let neutral = wb.map(|w| wb.iter().cloned().fold(f64::MAX, f64::min) / w);
-    // The colour matrix is the source's own white-balance model at its as-shot white (the generic one for a raw with
-    // no matrices), so the DNG declares the source's as-shot white and a white-balance edit gives the multipliers it
-    // gives the source. One built from `forward` put the as-shot white off the locus whenever the look's matrix tints
-    // white, as fitted looks do: ARW merges opened at about 7000 K / +115 for 4800 K / +8, and any white-balance edit
-    // turned them green. `forward` is only used with the neutral, so the render at As Shot is the same either way.
-    let color_matrix = lightcraft_raw::color::xyz_to_camera(tags, t.white_xy);
-    if !color_matrix.0.iter().flatten().all(|v| v.is_finite()) {
+    // The colour matrices are the white-balance model the app shows and edits the source's white balance with
+    // ([`wb_model`]; the generic one at the as-shot white when it has none), so the DNG declares the as-shot white the
+    // source shows and a white-balance edit gives the multipliers it gives the source. Matrices built from `forward`
+    // put the as-shot white off the locus whenever the look's matrix tints white, as fitted looks do: ARW merges opened
+    // at about 7000 K / +115 for 4800 K / +8, and any white-balance edit turned them green. `forward` is only used with
+    // the neutral, so the render at As Shot is the same either way.
+    let (illuminant, color_matrix) = if lightcraft_raw::color::has_matrix(wb_model) {
+        (wb_model.illuminant, wb_model.color_matrix)
+    } else {
+        ([21, 0], [Some(lightcraft_raw::color::xyz_to_camera(wb_model, t.white_xy)), None])
+    };
+    if !color_matrix.iter().flatten().all(|m| m.0.iter().flatten().all(|v| v.is_finite())) {
         return None;
     }
     Some(ColorData {
-        illuminant: [21, 0],
-        color_matrix: [Some(color_matrix), None],
-        forward_matrix: [Some(forward), None],
+        illuminant,
+        color_matrix,
+        // a second colour matrix comes with a second forward matrix (DNG spec): the same one, the look is fitted at one
+        // white
+        forward_matrix: [Some(forward), color_matrix[1].map(|_| forward)],
         camera_calibration: [None, None],
         analog_balance: None,
         as_shot_neutral: Some(neutral),
@@ -2148,7 +2170,7 @@ mod tests {
         let samples = [[0.2, 0.3, 0.1], [0.05, 0.02, 0.4], [0.6, 0.6, 0.6], [0.01, 0.5, 0.03]];
         let render = |m: &Mat3, wb: [f32; 3], ev: f64, c: [f64; 3]| m.apply(std::array::from_fn(|i| c[i] * wb[i] as f64)).map(|v| v * ev.exp2());
         for look in [Some(&look), None] {
-            let dng = dng_colour(&ColorData::default(), &t, look).unwrap();
+            let dng = dng_colour(&ColorData::default(), &ColorData::default(), &t, look).unwrap();
             let back = camera_transform_of(&dng, as_shot_white_of(&dng, None));
             for i in 0..3 {
                 assert!((back.wb[i] - t.wb[i]).abs() < 1e-4 * t.wb[i], "{:?} vs {:?}", back.wb, t.wb);
@@ -2186,13 +2208,47 @@ mod tests {
         look.matrix = Mat3([[1.75, -0.4, -0.2], [-0.2, 1.35, -0.2], [0.05, -0.3, 1.3]]);
         let tint = look.matrix.apply([1.0; 3]);
         assert!((tint[0] - tint[1]).abs() > 0.1, "a look that tints white: {tint:?}");
-        let dng = dng_colour(&tags, &t, Some(&look)).unwrap();
+        let dng = dng_colour(&tags, &tags, &t, Some(&look)).unwrap();
         let back = as_shot_white_of(&dng, None);
         assert!((back.x - xy.x).abs() < 1e-6 && (back.y - xy.y).abs() < 1e-6, "as shot {back:?}, the source's {xy:?}");
         // at other whites (a white-balance edit) the same multipliers as the source
         for w in [Xy::new(0.3127, 0.329), Xy::new(0.4476, 0.4074), Xy::new(0.28, 0.29)] {
             let (a, b) = (wb_multipliers(&tags, w), wb_multipliers(&dng, w));
             assert!(a.iter().zip(b).all(|(a, b)| (a - b).abs() < 1e-6 * a), "{w:?}: {a:?} vs {b:?}");
+        }
+    }
+
+    /// For a camera with measured matrices (the ILCE-7M3), the app shows and edits a fitted ARW's white balance through
+    /// them: the merged DNG declares that as-shot white and gives that model's multipliers at other whites, while its
+    /// render at As Shot stays the fitted look's (real ARW merges: As Shot 6445–7342 K / +115 where the ARWs show
+    /// 3932–5268 K / +7, with the generic model in the DNG).
+    #[test]
+    fn dng_colour_declares_the_white_balance_a_covered_camera_shows() {
+        use lightcraft_raw::color::{as_shot_white_of, camera_transform_of, wb_multipliers};
+        let camera = lightcraft_raw::spectral::find(Some("SONY"), "ILCE-7M3").expect("a covered camera");
+        let tags = ColorData::default();
+        let as_shot = [2.5039f32, 1.0, 1.5078];
+        let t = camera_transform_of(&tags, as_shot_white_of(&tags, Some(as_shot)));
+        let mut model = tags.clone();
+        assert!(camera.fill(&mut model));
+        let shown = lightcraft_raw::spectral::as_shot_white_through(camera, &tags, Some(as_shot)).unwrap();
+        let mut look = dro_test_look(&std::array::from_fn(|i| 0.005 * 1.2f32.powi(i as i32)), &|x| 0.95 * x / (x + 0.1));
+        look.matrix = Mat3([[1.75, -0.4, -0.2], [-0.2, 1.35, -0.2], [0.05, -0.3, 1.3]]);
+        let dng = dng_colour(&tags, &model, &t, Some(&look)).unwrap();
+        let back = as_shot_white_of(&dng, None);
+        assert!((back.x - shown.x).abs() < 1e-5 && (back.y - shown.y).abs() < 1e-5, "as shot {back:?}, shown {shown:?}");
+        for w in [Xy::new(0.3127, 0.329), Xy::new(0.4476, 0.4074), Xy::new(0.3457, 0.3585)] {
+            let (a, b) = (wb_multipliers(&model, w), wb_multipliers(&dng, w));
+            assert!(a.iter().zip(b).all(|(a, b)| (a - b).abs() < 1e-6 * a), "{w:?}: {a:?} vs {b:?}");
+        }
+        // the render at As Shot: the fitted look over the generic transform, as when the ARW is opened alone
+        let rendered = camera_transform_of(&dng, back);
+        assert!(rendered.wb.iter().zip(t.wb).all(|(a, b)| (a - b).abs() < 1e-4 * b), "{:?} vs {:?}", rendered.wb, t.wb);
+        let m = look.matrix.mul(&t.matrix);
+        for c in [[0.2, 0.3, 0.1], [0.05, 0.02, 0.4], [0.6, 0.6, 0.6]] {
+            let want = m.apply(std::array::from_fn(|i| c[i] * t.wb[i] as f64)).map(|v| v * t.baseline_exposure.exp2());
+            let got = rendered.matrix.apply(std::array::from_fn(|i| c[i] * rendered.wb[i] as f64)).map(|v| v * dng.baseline_exposure.exp2());
+            assert!(want.iter().zip(got).all(|(a, b)| (a - b).abs() < 1e-4), "{c:?}: {want:?} vs {got:?}");
         }
     }
 
