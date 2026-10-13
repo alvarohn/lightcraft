@@ -1,5 +1,12 @@
 # What's new in LightCraft
 
+## 2026-10-13
+
+### HDR merges keep the lens correction
+- An HDR made with Photo ▸ Photo Merge ▸ HDR now keeps the lens correction the photos carry (the Sony A7 III's and
+  A7R IVA's, Panasonic's and Leica's, and the one some DNGs carry, e.g. from drones): Optics ▸ Enable Lens Corrections
+  straightens it as it does the photos it was made from. HDRs merged before this don't have it; merge them again.
+
 ## 2026-10-12
 
 ### Lens distortion correction for the Sony A7 III
