@@ -116,6 +116,7 @@ fn hdr_merge_keeps_the_reference_frames_lens_corrections() {
         }
         let _ = std::fs::remove_dir_all(&dir);
     }
+}
 
 /// Raws without colour matrices of their own (CR2, NEF, ARW…) merge into a DNG with the colour they open with,
 /// not with no colour at all (issue #965: an HDR merge of CR2s rendered green and dark).
