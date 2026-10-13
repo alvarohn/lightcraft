@@ -1,0 +1,70 @@
+# Fork-only (alvarohn/lightcraft), not for upstream: builds the Windows x64 installer of this branch, unsigned,
+# as a run artifact (and a pre-release of the fork when workflows may write). Same steps as release.yml's
+# Windows job, without signing.
+name: Fork Windows x64
+
+on:
+  push:
+    branches: [claude/fork-build-a7iii-hdr]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fork-windows-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CARGO_TERM_COLOR: always
+  CARGO_INCREMENTAL: 0
+  LIGHTCRAFT_BUILD_SHA: ${{ github.sha }}
+
+jobs:
+  windows:
+    name: Windows x64
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: storytold/craft-fonts
+          ref: 8dcdacd5153e64560d109541a47d806f26f048c0 # same pin as release.yml
+          path: craft-fonts
+      - uses: dtolnay/rust-toolchain@686976e191b89faba57d3206551f0f330d8cb249 # stable
+        with:
+          targets: x86_64-pc-windows-msvc
+      - uses: Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6 # v2.9.2
+        with:
+          key: fork-windows-x64
+      - name: Version
+        shell: bash
+        run: |
+          v=$(awk '/^\[/ { p = ($0 == "[workspace.package]"); next } p && $1 == "version" { gsub(/[" ]/, "", $3); print $3; exit }' Cargo.toml)
+          echo "LIGHTCRAFT_VERSION=$v-a7iii-hdr" >> "$GITHUB_ENV"
+          echo "LIGHTCRAFT_BUILD_DATE=$(date -u +%Y-%m-%d)" >> "$GITHUB_ENV"
+      - name: Install WiX
+        shell: pwsh
+        run: dotnet tool install --global wix --version 5.0.2
+      - name: Build and package (unsigned)
+        shell: pwsh
+        env:
+          CRAFT_FONTS_DIR: ${{ github.workspace }}/craft-fonts
+          CRAFT_FONTS_REQUIRED: "1"
+        run: ./packaging/windows/package.ps1 -Arch x64
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: fork-windows-x64
+          path: dist/release/*
+          if-no-files-found: error
+      - name: Publish pre-release
+        # needs "Read and write permissions" for workflows in the fork's settings; the artifact above is enough
+        continue-on-error: true
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="a7iii-hdr-$(date -u +%Y%m%d)-${GITHUB_SHA::7}"
+          notes="LightCraft $LIGHTCRAFT_VERSION con la corrección de distorsión de la Sony A7 III (ILCE-7M3) habilitada y los HDR que conservan la corrección de lente. Compilado de ${GITHUB_SHA::9}, sin firmar: Windows muestra \"Windows protegió tu PC\" → Más información → Ejecutar de todas formas. Reemplaza a la versión oficial instalada; la próxima versión oficial la reemplaza a su vez."
+          gh release create "$tag" dist/release/* --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
+            --prerelease --title "LightCraft $LIGHTCRAFT_VERSION (A7 III + HDR)" --notes "$notes"
